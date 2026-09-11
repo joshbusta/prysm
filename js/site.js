@@ -155,12 +155,12 @@
 
   var videoUrl = embedUrl();
 
-  // With the placeholder still in place there is nothing to play, so the poster
-  // stands on its own rather than offering a control that leads nowhere.
-  if (!videoUrl) {
-    button.parentNode.removeChild(button);
-    return;
-  }
+  // The prototype keeps the play control visible so the section still reads as a
+  // film, but marks it inactive until a real Vimeo ID replaces the placeholder.
+  if (!videoUrl) button.setAttribute("aria-disabled", "true");
 
-  button.addEventListener("click", play);
+  button.addEventListener("click", function () {
+    if (!videoUrl) return;
+    play();
+  });
 })();
