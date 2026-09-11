@@ -965,7 +965,7 @@ section > .card + .card {
   position: relative;
   display: grid;
   place-items: center;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 640 / 437;
   border-radius: 1.25rem;
 }
 
@@ -1007,7 +1007,7 @@ section > .card + .card {
   height: 100%;
   max-width: none;
   object-fit: cover;
-  object-position: center 22%;
+  object-position: center;
 }
 
 .film-duotone {
@@ -1021,23 +1021,12 @@ section > .card + .card {
   filter: grayscale(1) contrast(1.22) brightness(0.98);
 }
 
-/* The stand-in poster is a transparent cutout, so the colour layers are masked to
-   the subject to keep them off the mesh behind it. A rectangular film still wants
-   the mask removed outright, not repointed at the new image. */
 .film-duotone::before,
 .film-duotone::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  -webkit-mask-image: url("../images/hero_3.png");
-  mask-image: url("../images/hero_3.png");
-  -webkit-mask-size: cover;
-  mask-size: cover;
-  -webkit-mask-position: center 22%;
-  mask-position: center 22%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
 }
 
 .film-duotone::before {

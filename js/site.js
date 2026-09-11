@@ -116,7 +116,7 @@
     raw = raw ? raw.trim() : "";
     if (!raw || raw === placeholderId) return "";
     var base = /^https?:/i.test(raw) ? raw : "https://player.vimeo.com/video/" + encodeURIComponent(raw);
-    return base + (base.indexOf("?") === -1 ? "?" : "&") + "autoplay=1&title=0&byline=0&portrait=0";
+    return base + (base.indexOf("?") === -1 ? "?" : "&") + "autoplay=1&badge=0&autopause=0&title=0&byline=0&portrait=0";
   }
 
   function makeEmbed(url) {
@@ -124,7 +124,8 @@
     embed.className = "film-embed";
     embed.src = url;
     embed.title = "PrYSM Documentary";
-    embed.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media");
+    embed.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share");
+    embed.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
     frame.insertBefore(embed, frame.firstChild);
     return embed;
   }
