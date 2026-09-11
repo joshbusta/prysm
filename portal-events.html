@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Member events — PrYSM</title>
+  <meta name="description" content="Gated events and volunteer shifts. Members only.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/proposal.css">
+</head>
+<body class="theme-secure">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="site-canvas">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="images/logo-elephants.png" width="168" height="48" alt="PrYSM">
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label">Menu</label>
+      <nav class="site-nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li>
+            <details class="nav-sub">
+              <summary>Act</summary>
+              <ul class="nav-sublist">
+              <li><a href="register.html">Register</a></li>
+              <li><a href="portal-events.html" aria-current="page">Events</a></li>
+              <li><a href="links.html">Quick links</a></li>
+              <li><a href="https://secure.actblue.com/donate/PrYSM" rel="noopener noreferrer">Donate</a></li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details class="nav-sub">
+              <summary>Us</summary>
+              <ul class="nav-sublist">
+              <li><a href="our-story.html">Our Story</a></li>
+              <li><a href="our-community.html">Our Community</a></li>
+              <li><a href="our-networks.html">Our Networks</a></li>
+              <li><a href="our-campaigns.html">Our Campaigns</a></li>
+              <li><a href="rice.html">Rhode Island Civic Engagement</a></li>
+              <li><a href="organizing-circle.html">Organizing Circle</a></li>
+              <li><a href="announcements.html">Announcements</a></li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details class="nav-sub">
+              <summary>Tools</summary>
+              <ul class="nav-sublist">
+              <li><a href="know-your-rights.html">Know Your Rights</a></li>
+              <li><a href="know-your-rights-ice.html">Know Your Rights: ICE</a></li>
+              <li><a href="pass-coalition-plan.html">PASS Coalition Plan</a></li>
+              <li><a href="lao-deportation-toolkit.html">Lao Deportation Toolkit</a></li>
+              </ul>
+            </details>
+          </li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-tools">
+        <a class="header-login" href="login.html" data-session="in">Log out</a>
+        <a class="header-login" href="login.html?next=portal-events.html" data-session="out" hidden>Member login</a>
+        <a class="btn btn-donate" href="https://secure.actblue.com/donate/PrYSM" rel="noopener noreferrer">Donate</a>
+      </div>
+    </div>
+  </header>
+  <nav class="portal-subnav" aria-label="Portal" data-gate="in">
+    <a href="portal-events.html" aria-current="page">Events</a>
+    <a href="portal-comms.html">Channels</a>
+  </nav>
+  <main id="main">
+    <div class="wrap">
+      <div data-gate="out" hidden>
+        <div class="gate-card">
+          <h1>Members only</h1>
+          <p>Event sites are not public. Sign in and we’ll bring you back here.</p>
+          <p><a class="btn" href="login.html?next=portal-events.html">Go to login</a></p>
+        </div>
+      </div>
+      <div data-gate="in">
+        <section class="page-section">
+          <h1>Events</h1>
+          <p class="lede">Thumb zone at the bottom of each card. Swipe right or tap RSVP. Pull up or tap Shifts. Long-press confirms so a pocket cannot sign you up.</p>
+        </section>
+        <p class="form-status" data-offline hidden>Offline. Your last RSVP is cached on this device until you reconnect.</p>
+        <article class="next-event">
+          <h2>Next up</h2>
+          <p>Organizing Circle · Monday 4–6 PM · site in this portal only</p>
+        </article>
+        <div class="shift-deck">
+          <article class="shift-card" data-shift-card data-event-id="oc-mon" data-title="Organizing Circle">
+            <div class="shift-card-face">
+              <h2>Organizing Circle</h2>
+              <p class="shift-meta"><span>Mon 4–6 PM</span><span>Youth 13–19</span><span>Site after RSVP</span></p>
+              <p data-card-status></p>
+              <div class="shift-tools">
+                <button type="button" data-rsvp>RSVP</button>
+                <button type="button" data-shifts>Shifts</button>
+              </div>
+            </div>
+            <div class="shift-spectrum">
+              <button class="shift-band" type="button" data-shift-id="oc-setup" data-shift-label="4:00 setup" data-fullness="open">4:00 setup <span class="seats">6 open</span></button>
+              <button class="shift-band" type="button" data-shift-id="oc-food" data-shift-label="4:30 food" data-fullness="filling">4:30 food <span class="seats">2 open</span></button>
+              <button class="shift-band" type="button" data-shift-id="oc-close" data-shift-label="6:00 close" data-fullness="full">6:00 close <span class="seats">Full</span></button>
+            </div>
+            <p class="shift-hint">Swipe right RSVP · pull up shifts · long-press confirms</p>
+            <pre class="payload-view" hidden></pre>
+          </article>
+          <article class="shift-card" data-shift-card data-event-id="rice-clinic" data-title="RICE legal clinic">
+            <div class="shift-card-face">
+              <h2>RICE legal clinic</h2>
+              <p class="shift-meta"><span>Sat 10 AM</span><span>Members + family</span><span>Site after RSVP</span></p>
+              <p data-card-status></p>
+              <div class="shift-tools">
+                <button type="button" data-rsvp>RSVP</button>
+                <button type="button" data-shifts>Shifts</button>
+              </div>
+            </div>
+            <div class="shift-spectrum">
+              <button class="shift-band" type="button" data-shift-id="rice-greet" data-shift-label="9:30 greet" data-fullness="open">9:30 greet <span class="seats">4 open</span></button>
+              <button class="shift-band" type="button" data-shift-id="rice-interp" data-shift-label="Interpreter" data-fullness="filling">Interpreter <span class="seats">1 open</span></button>
+              <button class="shift-band" type="button" data-shift-id="rice-child" data-shift-label="Child space" data-fullness="open">Child space <span class="seats">3 open</span></button>
+            </div>
+            <p class="shift-hint">Capacity is light density plus the word Open / Filling / Full — never color alone.</p>
+            <pre class="payload-view" hidden></pre>
+          </article>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="confirm-toast" data-confirm>
+    <p data-confirm-copy></p>
+    <div class="wizard-nav">
+      <button class="btn" type="button" data-confirm-yes>Confirm</button>
+      <button class="btn" type="button" data-confirm-no>Cancel</button>
+    </div>
+  </div>
+  </div>
+  <script src="js/site.js" defer></script>
+  <script src="js/proposal.js" defer></script>
+</body>
+</html>

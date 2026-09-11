@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register — PrYSM</title>
+  <meta name="description" content="Join PrYSM. Name, channels, done. No account-create anxiety.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/proposal.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="site-canvas">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="images/logo-elephants.png" width="168" height="48" alt="PrYSM">
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label">Menu</label>
+      <nav class="site-nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li>
+            <details class="nav-sub">
+              <summary>Act</summary>
+              <ul class="nav-sublist">
+              <li><a href="register.html" aria-current="page">Register</a></li>
+              <li><a href="portal-events.html">Events</a></li>
+              <li><a href="links.html">Quick links</a></li>
+              <li><a href="https://secure.actblue.com/donate/PrYSM" rel="noopener noreferrer">Donate</a></li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details class="nav-sub">
+              <summary>Us</summary>
+              <ul class="nav-sublist">
+              <li><a href="our-story.html">Our Story</a></li>
+              <li><a href="our-community.html">Our Community</a></li>
+              <li><a href="our-networks.html">Our Networks</a></li>
+              <li><a href="our-campaigns.html">Our Campaigns</a></li>
+              <li><a href="rice.html">Rhode Island Civic Engagement</a></li>
+              <li><a href="organizing-circle.html">Organizing Circle</a></li>
+              <li><a href="announcements.html">Announcements</a></li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details class="nav-sub">
+              <summary>Tools</summary>
+              <ul class="nav-sublist">
+              <li><a href="know-your-rights.html">Know Your Rights</a></li>
+              <li><a href="know-your-rights-ice.html">Know Your Rights: ICE</a></li>
+              <li><a href="pass-coalition-plan.html">PASS Coalition Plan</a></li>
+              <li><a href="lao-deportation-toolkit.html">Lao Deportation Toolkit</a></li>
+              </ul>
+            </details>
+          </li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-tools">
+        <a class="header-login" href="login.html">Member login</a>
+        <a class="btn btn-donate" href="https://secure.actblue.com/donate/PrYSM" rel="noopener noreferrer">Donate</a>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <div class="wrap">
+      <section class="page-section">
+        <h1>Join the movement</h1>
+        <p class="lede">Three short steps. Mute any channel. We never sell this list.</p>
+      </section>
+      <form class="glass-sheet" data-wizard>
+        <div class="step-dots" aria-hidden="true"><span class="is-on"></span><span></span><span></span></div>
+        <p class="form-status" data-status hidden></p>
+        <p class="form-status" data-offline hidden>You’re offline. We’ll send this when you reconnect.</p>
+
+        <div class="wizard-pane">
+          <h2>Who you are</h2>
+          <label for="reg-name">Name <span class="req">(required)</span>
+            <input id="reg-name" name="name" type="text" required autocomplete="name">
+          </label>
+          <label for="reg-email">Email <span class="req">(required)</span>
+            <input id="reg-email" name="email" type="email" required autocomplete="email">
+          </label>
+          <label for="reg-phone">Phone <span class="req">(optional)</span>
+            <input id="reg-phone" name="phone" type="tel" autocomplete="tel">
+          </label>
+          <div class="wizard-nav">
+            <button class="btn" type="button" data-next>Continue</button>
+          </div>
+        </div>
+
+        <div class="wizard-pane" hidden>
+          <h2>How we reach you</h2>
+          <p>Each band is a channel. Mute without leaving.</p>
+          <div class="spectrum">
+            <div class="spectrum-band" data-channel="sms">
+              <span>SMS</span>
+              <button type="button" aria-pressed="true">On</button>
+            </div>
+            <div class="spectrum-band" data-channel="whatsapp">
+              <span>WhatsApp</span>
+              <button type="button" aria-pressed="true">On</button>
+            </div>
+            <div class="spectrum-band" data-channel="email">
+              <span>Email digest</span>
+              <button type="button" aria-pressed="true">On</button>
+            </div>
+          </div>
+          <div class="wizard-nav">
+            <button class="btn" type="button" data-back>Back</button>
+            <button class="btn" type="submit">Finish</button>
+          </div>
+        </div>
+
+        <div class="wizard-pane" hidden>
+          <h2>You’re in</h2>
+          <p>Next: <a href="portal-events.html">member events</a>. Location and shifts stay behind login.</p>
+          <p><a class="btn" href="portal-events.html">Open the portal</a></p>
+          <pre class="payload-view" hidden></pre>
+        </div>
+      </form>
+    </div>
+  </main>
+  </div>
+  <script src="js/site.js" defer></script>
+  <script src="js/proposal.js" defer></script>
+</body>
+</html>

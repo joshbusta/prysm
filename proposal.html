@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contractor hub — PrYSM proposal</title>
+  <meta name="description" content="Clickable high-fidelity proposal: screens, states, tokens, and brief.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/proposal.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="site-canvas">
+  <p class="proposal-banner">High-fidelity proposal · not the live site · <a href="shared/contractor-brief.md">Written brief</a></p>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="images/logo-elephants.png" width="168" height="48" alt="PrYSM">
+      </a>
+      <div class="header-tools">
+        <a class="header-login" href="login.html">Member login</a>
+        <a class="btn btn-donate" href="https://secure.actblue.com/donate/PrYSM" rel="noopener noreferrer">Donate</a>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <div class="wrap">
+      <section class="page-section">
+        <h1>Walk the prototype</h1>
+        <p class="lede">Must-haves, funnel, and two signatures (Prism Compass + Shift Glass). Thumb-test at 390px. Forms show success, error, and webhook payload — they do not hit a live CRM yet.</p>
+      </section>
+      <section class="page-section">
+        <h2>Required click path</h2>
+        <div class="hub-grid">
+          <a href="index.html"><strong>Home</strong> Photo cycle + prism layer. People stay solid.</a>
+          <a href="links.html"><strong>/links</strong> Compass + embedded Register, RSVP, Mutual Aid.</a>
+          <a href="register.html"><strong>Register</strong> Three-step glass wizard + spectrum consent.</a>
+          <a href="login.html"><strong>Login</strong> Quiet Chamber. Magic link default.</a>
+          <a href="portal-events.html"><strong>Gated events</strong> Shift Glass deck. Logged-in view.</a>
+          <a href="portal-events.html?auth=out"><strong>Events (logged out)</strong> Returns to login with next.</a>
+          <a href="portal-comms.html"><strong>Channel opt-ins</strong> Same spectrum bands as register.</a>
+          <a href="brand.html"><strong>Brand physics</strong> Tokens, glass depths, Spline rules.</a>
+        </div>
+      </section>
+      <section class="page-section">
+        <h2>State matrix (query flags)</h2>
+        <ul>
+          <li><a href="register.html?state=error">register · error</a> · <a href="register.html?state=success">success</a></li>
+          <li><a href="login.html?state=error">login · error</a> · <a href="login.html?state=offline">offline</a></li>
+          <li><a href="links.html?state=success">links forms · success</a></li>
+        </ul>
+      </section>
+      <section class="page-section">
+        <h2>Docs</h2>
+        <ul>
+          <li><a href="shared/scope-ladder.md">Scope ladder + journeys</a></li>
+          <li><a href="shared/brand-physics.md">Brand physics</a></li>
+          <li><a href="shared/contractor-brief.md">Contractor brief, webhooks, a11y, out of scope</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  </div>
+  <script src="js/site.js" defer></script>
+  <script src="js/proposal.js" defer></script>
+</body>
+</html>

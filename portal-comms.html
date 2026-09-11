@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Channel opt-ins — PrYSM</title>
+  <meta name="description" content="Mute SMS, WhatsApp, or email without leaving the portal.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/proposal.css">
+</head>
+<body class="theme-secure">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="site-canvas">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="images/logo-elephants.png" width="168" height="48" alt="PrYSM">
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label">Menu</label>
+      <nav class="site-nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li>
+            <details class="nav-sub">
+              <summary>Act</summary>
+              <ul class="nav-sublist">
+              <li><a href="register.html">Register</a></li>
+              <li><a href="portal-events.html">Events</a></li>
+              <li><a href="links.html">Quick links</a></li>
+              <li><a href="https://secure.actblue.com/donate/PrYSM" rel="noopener noreferrer">Donate</a></li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details class="nav-sub">
+              <summary>Us</summary>
+              <ul class="nav-sublist">
+              <li><a href="our-story.html">Our Story</a></li>
+              <li><a href="our-community.html">Our Community</a></li>
+              <li><a href="our-networks.html">Our Networks</a></li>
+              <li><a href="our-campaigns.html">Our Campaigns</a></li>
+              <li><a href="rice.html">Rhode Island Civic Engagement</a></li>
+              <li><a href="organizing-circle.html">Organizing Circle</a></li>
+              <li><a href="announcements.html">Announcements</a></li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details class="nav-sub">
+              <summary>Tools</summary>
+              <ul class="nav-sublist">
+              <li><a href="know-your-rights.html">Know Your Rights</a></li>
+              <li><a href="know-your-rights-ice.html">Know Your Rights: ICE</a></li>
+              <li><a href="pass-coalition-plan.html">PASS Coalition Plan</a></li>
+              <li><a href="lao-deportation-toolkit.html">Lao Deportation Toolkit</a></li>
+              </ul>
+            </details>
+          </li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-tools">
+        <a class="header-login" href="login.html">Log out</a>
+        <a class="btn btn-donate" href="https://secure.actblue.com/donate/PrYSM" rel="noopener noreferrer">Donate</a>
+      </div>
+    </div>
+  </header>
+  <nav class="portal-subnav" aria-label="Portal">
+    <a href="portal-events.html">Events</a>
+    <a href="portal-comms.html" aria-current="page">Channels</a>
+  </nav>
+  <main id="main">
+    <div class="wrap">
+      <section class="page-section">
+        <h1>How we reach you</h1>
+        <p class="lede">Same spectrum as registration. Mute a band; the webhook writes consent timestamps so staff stop using a spreadsheet.</p>
+      </section>
+      <form class="glass-sheet" data-mock-form="comms">
+        <p class="form-status" data-status hidden></p>
+        <p class="form-status" data-offline hidden>Offline. Changes save on this device until you reconnect.</p>
+        <div class="spectrum">
+          <div class="spectrum-band" data-channel="sms">
+            <span>SMS</span>
+            <button type="button" aria-pressed="true">On</button>
+          </div>
+          <div class="spectrum-band" data-channel="whatsapp">
+            <span>WhatsApp</span>
+            <button type="button" aria-pressed="true">On</button>
+          </div>
+          <div class="spectrum-band" data-channel="email">
+            <span>Email digest</span>
+            <button type="button" aria-pressed="true">On</button>
+          </div>
+        </div>
+        <div class="wizard-nav">
+          <button class="btn" type="submit">Save channels</button>
+        </div>
+        <pre class="payload-view" hidden></pre>
+      </form>
+    </div>
+  </main>
+  </div>
+  <script src="js/site.js" defer></script>
+  <script src="js/proposal.js" defer></script>
+</body>
+</html>

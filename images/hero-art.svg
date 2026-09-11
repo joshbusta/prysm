@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="920" viewBox="0 0 720 920" role="img" aria-labelledby="heroArtTitle">
+  <title id="heroArtTitle">Surrealist coral duotone art direction</title>
+  <defs>
+    <linearGradient id="field" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF7A59"/>
+      <stop offset="55%" stop-color="#FF5E4D"/>
+      <stop offset="100%" stop-color="#E23A4A"/>
+    </linearGradient>
+    <radialGradient id="orb" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+      <stop offset="42%" stop-color="#F5F6FA" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="48%" r="55%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#FF5E4D" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="3" seed="3" result="n"/>
+      <feColorMatrix type="saturate" values="0" in="n" result="g"/>
+      <feComponentTransfer in="g" result="a">
+        <feFuncA type="linear" slope="0.55"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="a" mode="overlay"/>
+    </filter>
+    <clipPath id="frame">
+      <rect x="0" y="0" width="720" height="920" rx="36"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#frame)" filter="url(#grain)">
+    <rect width="720" height="920" fill="url(#field)"/>
+    <ellipse cx="360" cy="250" rx="210" ry="250" fill="#C42E3E" opacity="0.35"/>
+    <path d="M140 0 C140 210 230 320 360 320 C490 320 580 210 580 0 Z" fill="#2C2F4A" opacity="0.22"/>
+    <path d="M90 920 C110 560 220 500 360 500 C500 500 610 560 630 920 Z" fill="#1E60FF" opacity="0.18"/>
+    <path d="M160 0 C170 190 250 280 360 280 C470 280 550 190 560 0 Z" fill="#FF8A70" opacity="0.55"/>
+    <path d="M130 920 C150 590 240 545 360 545 C480 545 570 590 590 920 Z" fill="#D64545" opacity="0.5"/>
+    <ellipse cx="360" cy="460" rx="220" ry="90" fill="url(#glow)"/>
+    <circle cx="360" cy="458" r="78" fill="url(#orb)"/>
+    <circle cx="360" cy="458" r="54" fill="#F5F6FA" opacity="0.92"/>
+    <circle cx="338" cy="440" r="16" fill="#FFFFFF" opacity="0.7"/>
+  </g>
+</svg>
