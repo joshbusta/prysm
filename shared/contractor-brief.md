@@ -4,43 +4,29 @@ High-fidelity proposal package. Start at [proposal.html](../proposal.html). This
 
 ## Clickable prototype (required path)
 
-1. [Home](../index.html) — photo cycle, prism **layer** (not a takeover), Register CTA
-2. [/links](../links.html) — Prism Compass + embedded Register / RSVP / Mutual Aid
-3. [Register](../register.html) — 3-step wizard + spectrum consent
-4. [Login](../login.html) — Quiet Chamber, magic link default, password alternate
-5. [Gated events](../portal-events.html) — Shift Glass deck (logged in)
-6. [Events logged out](../portal-events.html?auth=out) — gate + return to login
-7. [Channel opt-ins](../portal-comms.html)
-8. Event detail is the expanded listing (shifts on the card). No separate public URL.
+1. [Home](../index.html)  photo cycle, Register and Our Story CTAs
+2. [Register](../register.html)  3-step wizard + spectrum consent
+3. [Login](../login.html)  Quiet Chamber, password only
+4. [Gated events](../portal-events.html)  Shift Glass deck (logged in)
+5. [Events logged out](../portal-events.html?auth=out)  gate + return to login
+6. [Channel opt-ins](../portal-comms.html)
+7. Event detail is the expanded listing (roles on the card). No separate public URL.
 
 State flags: `?state=error` · `?state=success` · `?state=offline` · `?auth=out`
 
 ## Auth (must-have)
 
 - Real backend. Not Squarespace members.
-- Magic link is the default (youth + organizers on transit). Password is secondary.
+- Email + password is the only login method in this proposal.
 - Unauthenticated `/portal/*` redirects to login with `next`.
 - Portal routes are `noindex, nofollow` and **must not** appear in the public sitemap.
-- Session: httpOnly cookies, short-lived magic links (15 minutes in copy).
-
-## Spline / 3D rules
-
-See [brand-physics.md](brand-physics.md).
-
-| Route | 3D |
-|---|---|
-| Home, `/links` | One CSS prism now; Spline only after “Load 3D” |
-| Login, portal | Never |
-| KYR, ICE, Lao toolkit | No mount in the DOM (`theme-kyr`) |
-
-Do not autoload Spline on Save-Data, 2G, or `prefers-reduced-motion`. Poster still required.
+- Session: httpOnly cookies.
 
 ## Signatures in this proposal
 
-- **Public:** Prism Compass (`links.html`, Home layer)
-- **Portal:** Shift Glass (`portal-events.html`)
+- **Portal:** Shift Glass (`portal-events.html`) tap RSVP or Roles, then confirm in a centered dialog.
 
-Quiet Chamber + Spectrum Consent ship with register/login/comms.
+Quiet Chamber (dark login/portal chrome) and Spectrum Consent ship with register/login/comms.
 
 ## Webhook field map
 
@@ -48,7 +34,7 @@ POST JSON to Airtable and/or EveryAction. One event per successful form. Include
 
 | Field | Type | Sources |
 |---|---|---|
-| `form_type` | string | `register`, `register-lite`, `rsvp`, `mutual-aid`, `event_rsvp`, `shift_signup`, `comms`, `newsletter`, `contact`, `login-magic` |
+| `form_type` | string | `register`, `rsvp`, `mutual-aid`, `event_rsvp`, `shift_signup`, `comms`, `newsletter`, `contact`, `login-password` |
 | `name` | string | register, rsvp, mutual aid, newsletter, contact |
 | `email` | string | register, login, newsletter, contact |
 | `phone` | string \| null | register |
@@ -70,18 +56,16 @@ Never send event street addresses or member names in public analytics. Mutual ai
 | Surface | Empty | Error | Success | Offline |
 |---|---|---|---|---|
 | Register | Step 1 blanks | Name/email required | “You’re in” + payload | Banner; queue locally in production |
-| Login magic | Email blank | “Enter the email on your membership” | “Magic link sent” | Banner |
-| Login password | — | Email + password required | Navigate to events | Banner |
-| `/links` RSVP | Name blank | “Add your name” | Webhook queued | Banner |
-| Mutual aid | Need blank | “Tell us what you need” | Webhook queued | Banner |
-| Events RSVP/shift | — | Full shift not selectable | Confirm toast, then payload | Cached next event copy |
+| Login password | Email / password blank | Email + password required | Navigate to events | Banner |
+| Events RSVP / role | — | Full role not selectable | Centered confirm, then payload | Cached next event copy |
 | Comms | Bands on | — | Saved + payload | Banner |
+
+Mutual aid and public RSVP are collected on [Contact](../contact.html) and gated [Events](../portal-events.html), not a link-in-bio page.
 
 ## Accessibility
 
 - Focus rings already exist on public chrome; keep 3px cobalt (white on dark hero/CTA).
-- Compass: 3D is `aria-hidden`; actions are real links. Reduced motion hides the crystal and shows stacked pills.
-- Shift Glass: swipe is extra; **RSVP / Shifts buttons are the accessible path**. Confirm toast is keyboard-operable.
+- Shift Glass: **RSVP / Role buttons are the only path**. Confirm dialog is keyboard-operable (Escape, Cancel, Confirm).
 - Shift capacity: light density **and** the words Open / Filling / Full. Never color only.
 - Tap targets ≥ 48px (`--thumb: 3rem`) on portal tools.
 - Bilingual Khmer / Lao / English is **later**, not this bid.
@@ -89,16 +73,14 @@ Never send event street addresses or member names in public analytics. Mutual ai
 
 ## Safety
 
-- Gated event locations never in OG tags, sitemaps, or the Groundlight shelf.
+- Gated event locations never in OG tags, sitemaps, or public social shelves.
 - Social stills are staff-approved and delayed. No live Instagram scrape in this bid.
-- ICE / KYR: document shelf, not decorative 3D, not gyro.
+- ICE / KYR: document shelf, not decorative 3D.
 
 ## Out of scope (do not bid as required)
 
 - Live Instagram Graph API
 - Admin CRM UI / EveryAction console clone
-- Spline on every page or on KYR
-- Gyro as the only Compass input
 - Hover-only gestures
 - Squarespace member areas
 - Production payment besides existing ActBlue donate link

@@ -1,4 +1,4 @@
-/* PrYSM — ethereal editorial (mesh gradient + grain) */
+/* PrYSM ethereal editorial (mesh gradient + grain) */
 
 /* -------------------------------------------------------------------------- */
 /* Tokens                                                                     */
@@ -29,6 +29,7 @@
   --radius-canvas: 2.6rem;
   --radius-card: 1.35rem;
   --thumb: 3rem;
+  --font-heading: "Syne", sans-serif;
   --font-display: "Playfair Display", "Iowan Old Style", Palatino, Georgia, serif;
   --font-body: Inter, "Segoe UI", system-ui, sans-serif;
   --ease: ease-in-out;
@@ -136,17 +137,19 @@ h4 {
 }
 
 h1 {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 500;
+  font-family: var(--font-heading);
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 700;
   font-size: clamp(2.1rem, 5vw, 3.4rem);
   letter-spacing: -0.03em;
 }
 
 h2 {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 500;
+  font-family: var(--font-heading);
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 700;
   font-size: clamp(1.45rem, 2.6vw, 2rem);
   letter-spacing: -0.02em;
 }
@@ -617,12 +620,12 @@ main > .wrap-wide + .wrap {
   z-index: 1;
   order: 2;
   margin: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  width: 100%;
-  height: min(72vh, 36rem);
-  min-height: 22rem;
+  margin-inline: -1.3rem;
+  display: grid;
+  align-items: end;
+  width: calc(100% + 2.6rem);
+  height: auto;
+  min-height: 0;
 }
 
 .hero-art::before {
@@ -639,14 +642,17 @@ main > .wrap-wide + .wrap {
 
 .hero-image,
 .hero-fist {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
+  position: relative;
   z-index: 1;
   display: block;
   width: 100%;
-  height: 100%;
-  max-width: none;
-  object-fit: cover;
+  height: auto;
+  max-width: 100%;
+  max-height: none;
+  margin-inline: auto;
+  align-self: end;
+  object-fit: contain;
   object-position: bottom center;
   opacity: 0;
   transition: opacity 1s ease-in-out;
@@ -654,26 +660,22 @@ main > .wrap-wide + .wrap {
     drop-shadow(0 18px 40px rgba(13, 110, 253, 0.32))
     drop-shadow(0 10px 28px rgba(255, 94, 77, 0.28));
 }
+.hero-image {
+  transform: scale(var(--hero-scale, 1));
+  transform-origin: center bottom;
+}
 
 .hero-image.is-active {
   z-index: 2;
   opacity: 1;
 }
 
-.hero-art figcaption,
-.slot-caption {
-  margin: 0.55rem 0 0;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-
 .hero-copy {
   position: relative;
   z-index: 1;
   order: 1;
+  min-width: 0;
+  max-width: 100%;
   padding: 0.5rem 0.35rem 0.4rem;
   color: var(--white);
   text-align: right;
@@ -694,9 +696,10 @@ main > .wrap-wide + .wrap {
 .hero-copy h1,
 .home-hero .display {
   margin: 0 0 0.28rem;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 500;
+  font-family: var(--font-heading);
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 700;
   font-size: clamp(2.8rem, 8vw, 5.1rem);
   line-height: 0.9;
   letter-spacing: -0.045em;
@@ -706,12 +709,13 @@ main > .wrap-wide + .wrap {
 }
 
 .hero-copy .hero-org {
-  white-space: nowrap;
-  margin: 0 0 0.85rem;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(1.15rem, 2.5vw, 1.7rem);
+  max-width: 100%;
+  margin: 0 0 0.85rem 0;
+  font-family: var(--font-heading);
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 600;
+  font-size: clamp(1.05rem, 1.7vw, 1.45rem);
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--white);
@@ -765,23 +769,24 @@ main > .wrap-wide + .wrap {
     align-self: end;
     justify-self: start;
     width: 100%;
-    height: 80vh;
+    height: auto;
     min-height: 0;
-    justify-content: flex-start;
-    align-items: stretch;
+    margin-inline: 0;
+    align-items: end;
   }
 
   .hero-image,
   .hero-fist {
     width: 100%;
-    height: 100%;
-    max-width: none;
-    margin: 0;
-    object-fit: cover;
+    height: auto;
+    max-width: 100%;
+    max-height: none;
+    margin-inline: 0;
+    object-fit: contain;
     object-position: bottom center;
     -webkit-mask-image:
-    linear-gradient(to right, #000 85%, transparent),
-    linear-gradient(to top, #000 90%, transparent);
+      linear-gradient(to right, #000 85%, transparent),
+      linear-gradient(to top, #000 90%, transparent);
     -webkit-mask-composite: source-in;
     mask-image:
       linear-gradient(to right, #000 85%, transparent),
@@ -793,7 +798,8 @@ main > .wrap-wide + .wrap {
     align-self: center;
     justify-self: stretch;
     width: auto;
-    max-width: none;
+    min-width: 0;
+    max-width: 100%;
     padding: 0.4rem 10rem 0.4rem 3.25rem;
     text-align: right;
   }
@@ -1187,6 +1193,8 @@ form {
   display: grid;
   gap: 0.95rem;
   max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 label {

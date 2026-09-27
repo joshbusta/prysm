@@ -1,9 +1,6 @@
 (function () {
   "use strict";
 
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  var saveData = navigator.connection && (navigator.connection.saveData || /2g/.test(navigator.connection.effectiveType || ""));
-
   function $(sel, root) {
     return (root || document).querySelector(sel);
   }
@@ -48,100 +45,6 @@
       banner.hidden = false;
       banner.classList.add("is-offline");
     }
-  });
-
-  /* ------------------------------------------------------------------ */
-  /* Prism Compass                                                      */
-  /* ------------------------------------------------------------------ */
-
-  $$("[data-prism-compass]").forEach(function (root) {
-    var stage = $(".prism-stage", root);
-    var object = $(".prism-object", root);
-    var actions = $$(".prism-action", root);
-    var loadBtn = $(".prism-load", root);
-    var index = 0;
-    var angle = -18;
-    var dragging = false;
-    var startX = 0;
-    var startAngle = 0;
-
-    function setIndex(next) {
-      index = (next + actions.length) % actions.length;
-      actions.forEach(function (action, i) {
-        action.classList.toggle("is-lit", i === index);
-      });
-      angle = -18 + index * -90;
-      if (object) object.style.setProperty("--ry", angle + "deg");
-    }
-
-    function can3d() {
-      return !reduceMotion.matches && !saveData;
-    }
-
-    if (!can3d() && stage) stage.hidden = true;
-
-    if (stage && object && can3d()) {
-      stage.addEventListener("pointerdown", function (event) {
-        dragging = true;
-        startX = event.clientX;
-        startAngle = angle;
-        stage.classList.add("is-dragging");
-        stage.setPointerCapture(event.pointerId);
-      });
-      stage.addEventListener("pointermove", function (event) {
-        if (!dragging) return;
-        var delta = event.clientX - startX;
-        angle = startAngle + delta * 0.45;
-        object.style.setProperty("--ry", angle + "deg");
-      });
-      function endDrag() {
-        if (!dragging) return;
-        dragging = false;
-        stage.classList.remove("is-dragging");
-        var snapped = Math.round((angle + 18) / -90);
-        setIndex(snapped);
-      }
-      stage.addEventListener("pointerup", endDrag);
-      stage.addEventListener("pointercancel", endDrag);
-    }
-
-    actions.forEach(function (action, i) {
-      action.addEventListener("focus", function () {
-        setIndex(i);
-      });
-    });
-
-    if (loadBtn) {
-      if (!can3d()) {
-        loadBtn.hidden = true;
-      }
-      loadBtn.addEventListener("click", function () {
-        root.setAttribute("data-spline-loaded", "true");
-        loadBtn.textContent = "3D scene ready (CSS stand-in)";
-        loadBtn.disabled = true;
-      });
-    }
-
-    setIndex(0);
-  });
-
-  /* ------------------------------------------------------------------ */
-  /* /links sheets                                                      */
-  /* ------------------------------------------------------------------ */
-
-  $$("[data-open-sheet]").forEach(function (trigger) {
-    trigger.addEventListener("click", function (event) {
-      var id = trigger.getAttribute("data-open-sheet");
-      var sheet = id ? document.getElementById(id) : null;
-      if (!sheet) return;
-      event.preventDefault();
-      $$(".sheet").forEach(function (node) {
-        node.classList.toggle("is-open", node === sheet);
-      });
-      sheet.scrollIntoView({ block: "nearest" });
-      var first = $("input, button, textarea", sheet);
-      if (first) first.focus();
-    });
   });
 
   /* ------------------------------------------------------------------ */
@@ -261,21 +164,6 @@
       });
       var requested = data.next || params.get("next") || "portal-events.html";
       var nextUrl = /^[a-z0-9._-]+\.html$/i.test(requested) ? requested : "portal-events.html";
-      if (kind === "login-magic") {
-        if (!data.email) {
-          showStatus(status, "error", "Enter the email on your membership.");
-          return;
-        }
-        showStatus(status, "success", "Magic link sent. Check your email — it expires in 15 minutes.");
-        revealPayload(pre, data);
-        var hop = $("[data-after-login]", form);
-        if (hop) {
-          hop.hidden = false;
-          hop.href = nextUrl;
-          hop.parentNode.hidden = false;
-        }
-        return;
-      }
       if (kind === "login-password") {
         if (!data.email || !data.password) {
           showStatus(status, "error", "Email and password are required.");
@@ -298,7 +186,7 @@
         data.channel_whatsapp = channels.whatsapp;
         data.channel_email = channels.email;
       }
-      showStatus(status, "success", "Got it. Staff will see this in Airtable / EveryAction — no re-typing.");
+      showStatus(status, "success", "Got it. Staff will see this in Airtable / EveryAction.");
       revealPayload(pre, data);
     });
 
@@ -310,22 +198,20 @@
     }
   });
 
-  var passwordToggle = $("[data-show-password]");
-  if (passwordToggle) {
-    passwordToggle.addEventListener("click", function () {
-      var pane = $("#password-pane");
-      if (!pane) return;
-      pane.hidden = !pane.hidden;
-      passwordToggle.textContent = pane.hidden ? "Use a password instead" : "Hide password login";
-    });
-  }
-
   /* ------------------------------------------------------------------ */
   /* Shift Glass                                                        */
   /* ------------------------------------------------------------------ */
 
   var toast = $("[data-confirm]");
   var pending = null;
+  var lastFocus = null;
+
+  function closeConfirm() {
+    pending = null;
+    if (toast) toast.classList.remove("is-open");
+    if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+    lastFocus = null;
+  }
 
   function askConfirm(message, onYes) {
     if (!toast) {
@@ -333,29 +219,38 @@
       return;
     }
     pending = onYes;
+    lastFocus = document.activeElement;
     $("[data-confirm-copy]", toast).textContent = message;
     toast.classList.add("is-open");
+    var yes = $("[data-confirm-yes]", toast);
+    if (yes) yes.focus();
   }
 
   if (toast) {
     toast.addEventListener("click", function (event) {
       if (event.target.closest("[data-confirm-yes]") && pending) {
-        pending();
+        var done = pending;
         pending = null;
         toast.classList.remove("is-open");
+        if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+        lastFocus = null;
+        done();
+        return;
       }
-      if (event.target.closest("[data-confirm-no]")) {
-        pending = null;
-        toast.classList.remove("is-open");
+      if (event.target === toast || event.target.closest("[data-confirm-no]")) {
+        closeConfirm();
       }
     });
   }
 
+  document.addEventListener("keydown", function (event) {
+    if (event.key !== "Escape") return;
+    if (!toast || !toast.classList.contains("is-open")) return;
+    event.preventDefault();
+    closeConfirm();
+  });
+
   $$("[data-shift-card]").forEach(function (card) {
-    var startX = 0;
-    var startY = 0;
-    var tracking = false;
-    var pressTimer = null;
     var rsvpBtn = $("[data-rsvp]", card);
     var shiftsBtn = $("[data-shifts]", card);
 
@@ -363,7 +258,7 @@
       askConfirm("Hold this RSVP for " + (card.getAttribute("data-title") || "this event") + "?", function () {
         card.classList.add("is-rsvp");
         var status = $("[data-card-status]", card);
-        if (status) status.textContent = "You’re in. Location stays in the portal.";
+        if (status) status.textContent = "You RSVPed!";
         var pre = $("pre", card);
         revealPayload(pre, {
           form_type: "event_rsvp",
@@ -395,69 +290,7 @@
         });
       });
     });
-
-    card.addEventListener("pointerdown", function (event) {
-      tracking = true;
-      startX = event.clientX;
-      startY = event.clientY;
-      pressTimer = window.setTimeout(function () {
-        pressTimer = null;
-        rsvp();
-      }, 520);
-    });
-
-    card.addEventListener("pointermove", function (event) {
-      if (!tracking) return;
-      var dx = event.clientX - startX;
-      var dy = event.clientY - startY;
-      if (Math.abs(dx) + Math.abs(dy) > 12 && pressTimer) {
-        window.clearTimeout(pressTimer);
-        pressTimer = null;
-      }
-    });
-
-    function endPointer(event) {
-      if (!tracking) return;
-      tracking = false;
-      if (pressTimer) {
-        window.clearTimeout(pressTimer);
-        pressTimer = null;
-      }
-      var dx = event.clientX - startX;
-      var dy = event.clientY - startY;
-      if (dx > 72 && Math.abs(dx) > Math.abs(dy)) rsvp();
-      else if (dy < -56 && Math.abs(dy) > Math.abs(dx)) card.classList.add("is-open");
-    }
-
-    card.addEventListener("pointerup", endPointer);
-    card.addEventListener("pointercancel", function () {
-      tracking = false;
-      if (pressTimer) window.clearTimeout(pressTimer);
-    });
   });
-
-  /* ------------------------------------------------------------------ */
-  /* Groundlight overlay                                                */
-  /* ------------------------------------------------------------------ */
-
-  var overlay = $("[data-story]");
-  $$("[data-story-open]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      if (!overlay) return;
-      var img = $("img", overlay);
-      var cap = $("figcaption", overlay);
-      if (img) img.src = btn.getAttribute("data-src") || btn.querySelector("img").src;
-      if (cap) cap.textContent = btn.getAttribute("data-caption") || "";
-      overlay.classList.add("is-open");
-    });
-  });
-  if (overlay) {
-    overlay.addEventListener("click", function (event) {
-      if (event.target.closest("[data-story-close]") || event.target === overlay) {
-        overlay.classList.remove("is-open");
-      }
-    });
-  }
 
   var auth = new URLSearchParams(window.location.search).get("auth");
   if (auth === "out") {
@@ -466,17 +299,4 @@
     $$("[data-session=in]").forEach(function (node) { node.hidden = true; });
     $$("[data-session=out]").forEach(function (node) { node.hidden = false; });
   }
-
-  $$("[data-facet-filter]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      $$("[data-facet-filter]").forEach(function (el) {
-        el.classList.toggle("is-on", el === btn);
-      });
-      var tag = btn.getAttribute("data-facet-filter");
-      $$("[data-story-open]").forEach(function (item) {
-        var tags = (item.getAttribute("data-tags") || "").split(",");
-        item.hidden = tag !== "all" && tags.indexOf(tag) === -1;
-      });
-    });
-  });
 })();

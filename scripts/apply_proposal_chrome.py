@@ -8,7 +8,6 @@ ROOT = Path("/Users/josue/Documents/PrYSM")
 SKIP = {
     "brand.html",
     "proposal.html",
-    "links.html",
     "register.html",
     "login.html",
     "portal-events.html",
@@ -52,7 +51,6 @@ def nav_for(filename):
               <ul class="nav-sublist">
               {link("register.html", "Register")}
               {link("portal-events.html", "Events")}
-              {link("links.html", "Quick links")}
               <li><a href="https://secure.actblue.com/donate/PrYSM" rel="noopener noreferrer">Donate</a></li>
               </ul>
             </details>
@@ -99,48 +97,40 @@ OLD_TOOLS = '''      <div class="header-tools">
 STORY_SHARDS = '''        <div class="shard-gallery">
           <figure class="media-shard" data-crop="protest">
             <img src="images/hero.png" width="800" height="500" alt="Organizer holding a protest sign overhead">
-            <figcaption>From the ground</figcaption>
           </figure>
           <figure class="media-shard" data-crop="fists">
             <img src="images/hero_2.png" width="800" height="500" alt="Young people standing together, several with fists raised">
-            <figcaption>Youth leadership</figcaption>
           </figure>
           <figure class="media-shard" data-crop="family">
             <img src="images/hero_3.png" width="800" height="500" alt="Multi-generational group including an elder holding a baby">
-            <figcaption>Keep families together</figcaption>
           </figure>
         </div>'''
 
 CAMPAIGN_SHARD = '''        <figure class="media-shard hero" data-crop="protest">
           <img src="images/hero.png" width="1200" height="720" alt="Organizer at a demonstration, sign raised">
-          <figcaption>SEARR · keep families together</figcaption>
         </figure>'''
 
 COMMUNITY_SHARDS = '''        <div class="shard-gallery">
           <figure class="media-shard" data-crop="left">
             <img src="images/hero_2.png" width="800" height="500" alt="Community portrait of young organizers">
-            <figcaption>Community portrait</figcaption>
           </figure>
           <figure class="media-shard" data-crop="family">
             <img src="images/hero_3.png" width="800" height="500" alt="Family and elders in community space">
-            <figcaption>Testimony</figcaption>
           </figure>
           <figure class="media-shard" data-crop="fists">
             <img src="images/hero.png" width="800" height="500" alt="Organizer with sign at a demonstration">
-            <figcaption>Organizing</figcaption>
           </figure>
         </div>'''
 
 RICE_HERO = '''        <figure class="media-shard hero" data-crop="family">
           <img src="images/hero_3.png" width="1200" height="720" alt="Multi-generational gathering supporting family defense">
-          <figcaption>RICE · stay with our families</figcaption>
         </figure>'''
 
 RICE_GALLERY = '''        <div class="shard-gallery">
-          <figure class="media-shard" data-crop="left"><img src="images/hero_2.png" width="800" height="500" alt="Youth gathered for a community panel"><figcaption>Legal clinic</figcaption></figure>
-          <figure class="media-shard" data-crop="family"><img src="images/hero_3.png" width="800" height="500" alt="Community gathering"><figcaption>Gathering</figcaption></figure>
-          <figure class="media-shard" data-crop="protest"><img src="images/hero.png" width="800" height="500" alt="Demonstration for deportation defense"><figcaption>Defense</figcaption></figure>
-          <figure class="media-shard" data-crop="fists"><img src="images/hero_2.png" width="800" height="500" alt="Partner event, fists raised"><figcaption>Partners</figcaption></figure>
+          <figure class="media-shard" data-crop="left"><img src="images/hero_2.png" width="800" height="500" alt="Youth gathered for a community panel"></figure>
+          <figure class="media-shard" data-crop="family"><img src="images/hero_3.png" width="800" height="500" alt="Community gathering"></figure>
+          <figure class="media-shard" data-crop="protest"><img src="images/hero.png" width="800" height="500" alt="Demonstration for deportation defense"></figure>
+          <figure class="media-shard" data-crop="fists"><img src="images/hero_2.png" width="800" height="500" alt="Partner event, fists raised"></figure>
         </div>'''
 
 RICE_PARTNERS = '''        <div class="partner-row">
@@ -150,10 +140,10 @@ RICE_PARTNERS = '''        <div class="partner-row">
         </div>'''
 
 OC_GALLERY = '''        <div class="shard-gallery">
-          <figure class="media-shard" data-crop="fists"><img src="images/hero_2.png" width="800" height="500" alt="Youth in organizing circle"><figcaption>Circle</figcaption></figure>
-          <figure class="media-shard" data-crop="protest"><img src="images/hero.png" width="800" height="500" alt="Youth at a demonstration"><figcaption>Action</figcaption></figure>
-          <figure class="media-shard" data-crop="left"><img src="images/hero_2.png" width="800" height="500" alt="Training session"><figcaption>Training</figcaption></figure>
-          <figure class="media-shard" data-crop="family"><img src="images/hero_3.png" width="800" height="500" alt="Community care after an action"><figcaption>Care</figcaption></figure>
+          <figure class="media-shard" data-crop="fists"><img src="images/hero_2.png" width="800" height="500" alt="Youth in organizing circle"></figure>
+          <figure class="media-shard" data-crop="protest"><img src="images/hero.png" width="800" height="500" alt="Youth at a demonstration"></figure>
+          <figure class="media-shard" data-crop="left"><img src="images/hero_2.png" width="800" height="500" alt="Training session"></figure>
+          <figure class="media-shard" data-crop="family"><img src="images/hero_3.png" width="800" height="500" alt="Community care after an action"></figure>
         </div>'''
 
 OC_PARTNERS = '''        <div class="partner-row">
@@ -169,38 +159,12 @@ ICE_SHELF = '''        <div class="toolkit-shelf">
           </article>
           <article class="toolkit-card">
             <h2>ICE home visit — additional languages</h2>
-            <p>Slots for Khmer, Lao, and Spanish flyers. Staff replace files; this page never loads Spline.</p>
+            <p>Slots for Khmer, Lao, and Spanish flyers. Staff replace files.</p>
           </article>
           <figure class="media-shard" data-crop="family">
             <img src="images/hero_3.png" width="800" height="500" alt="Community members standing together">
-            <figcaption>Community care — no location</figcaption>
           </figure>
         </div>'''
-
-PRISM_LAYER = '''      <div class="prism-layer" data-prism-compass>
-        <div class="prism-stage" aria-hidden="true" data-spline-mount>
-          <div class="prism-object" style="--ry: -18deg">
-            <div class="prism-face"></div>
-            <div class="prism-face"></div>
-            <div class="prism-face"></div>
-            <div class="prism-face"></div>
-          </div>
-        </div>
-        <div class="prism-fallback">
-          <a class="prism-action is-lit" href="register.html">Register</a>
-          <a class="prism-action" href="links.html">RSVP</a>
-          <a class="prism-action" href="links.html">Mutual aid</a>
-          <a class="prism-action" href="know-your-rights.html">Know Your Rights</a>
-        </div>
-        <div class="prism-actions">
-          <a class="prism-action is-lit" href="register.html">Register <small>01</small></a>
-          <a class="prism-action" href="links.html">RSVP <small>02</small></a>
-          <a class="prism-action" href="links.html">Mutual aid <small>03</small></a>
-          <a class="prism-action" href="know-your-rights.html">KYR <small>04</small></a>
-        </div>
-      </div>
-'''
-
 
 def patch(path: Path):
     html = path.read_text()
@@ -300,15 +264,10 @@ def patch(path: Path):
             flags=re.S,
         )
     if name == "index.html":
-        html = html.replace(
-            '<a class="btn" href="our-story.html">Our Story</a>',
-            '<a class="btn" href="register.html">Register</a>\n          <a class="btn" href="our-story.html">Our Story</a>',
-            1,
-        )
-        if "prism-layer" not in html:
+        if 'href="register.html">Register</a>' not in html.split("hero-actions")[-1][:400]:
             html = html.replace(
-                "</figure>\n      <div class=\"hero-copy\">",
-                "</figure>\n" + PRISM_LAYER + "      <div class=\"hero-copy\">",
+                '<a class="btn" href="our-story.html">Our Story</a>',
+                '<a class="btn" href="register.html">Register</a>\n          <a class="btn" href="our-story.html">Our Story</a>',
                 1,
             )
 

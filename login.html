@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Member login — PrYSM</title>
-  <meta name="description" content="Quiet Chamber login. Magic link default for members on the move.">
+  <meta name="description" content="Quiet Chamber login. Email and password for existing members.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600;1,700&family=Syne:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/proposal.css">
 </head>
@@ -30,7 +30,6 @@
               <ul class="nav-sublist">
               <li><a href="register.html">Register</a></li>
               <li><a href="portal-events.html">Events</a></li>
-              <li><a href="links.html">Quick links</a></li>
               <li><a href="https://secure.actblue.com/donate/PrYSM" rel="noopener noreferrer">Donate</a></li>
               </ul>
             </details>
@@ -72,26 +71,11 @@
   <main id="main">
     <div class="wrap">
       <section class="page-section">
-        <h1>Quiet Chamber</h1>
-        <p class="lede">No 3D. Large targets. Magic link first so you are not typing a password on a bus.</p>
+        <h1>Member Login</h1>
+        <p class="lede"></p>
       </section>
-      <p class="form-status" data-offline hidden>You’re offline. We’ll send the link when you reconnect.</p>
-      <form class="glass-sheet" data-mock-form="login-magic">
-        <p class="form-status" data-status hidden></p>
-        <label for="login-email">Email on your membership
-          <input id="login-email" name="email" type="email" required autocomplete="username">
-        </label>
-        <input type="hidden" name="next" value="portal-events.html">
-        <div class="wizard-nav">
-          <button class="btn" type="submit">Email me a link</button>
-        </div>
-        <p class="note">Production uses a real auth provider. This mock shows the success copy and payload.</p>
-        <pre class="payload-view" hidden></pre>
-        <p hidden><a class="btn" data-after-login href="portal-events.html">Open portal</a></p>
-        <p class="auth-alt"><button class="btn" type="button" data-show-password>Use a password instead</button></p>
-      </form>
-      <form class="glass-sheet auth-alt" id="password-pane" data-mock-form="login-password" hidden>
-        <h2>Password</h2>
+      <p class="form-status" data-offline hidden>You’re offline. Try again when you reconnect.</p>
+      <form class="glass-sheet" data-mock-form="login-password">
         <p class="form-status" data-status hidden></p>
         <label for="pw-email">Email
           <input id="pw-email" name="email" type="email" required autocomplete="username">
@@ -99,7 +83,12 @@
         <label for="pw-password">Password
           <input id="pw-password" name="password" type="password" required autocomplete="current-password">
         </label>
-        <button class="btn" type="submit">Enter portal</button>
+        <input type="hidden" name="next" value="portal-events.html">
+        <div class="wizard-nav">
+          <button class="btn" type="submit">Enter portal</button>
+        </div>
+        <p class="note">Production uses a real auth provider. This mock shows the success copy and payload.</p>
+        <pre class="payload-view" hidden></pre>
       </form>
       <p><a href="register.html">New here? Register</a></p>
     </div>

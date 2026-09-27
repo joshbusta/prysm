@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>Member events — PrYSM</title>
-  <meta name="description" content="Gated events and volunteer shifts. Members only.">
+  <meta name="description" content="Gated events and volunteer roles. Members only.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,500;1,600;1,700&family=Syne:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/proposal.css">
 </head>
@@ -31,7 +31,6 @@
               <ul class="nav-sublist">
               <li><a href="register.html">Register</a></li>
               <li><a href="portal-events.html" aria-current="page">Events</a></li>
-              <li><a href="links.html">Quick links</a></li>
               <li><a href="https://secure.actblue.com/donate/PrYSM" rel="noopener noreferrer">Donate</a></li>
               </ul>
             </details>
@@ -87,7 +86,7 @@
       <div data-gate="in">
         <section class="page-section">
           <h1>Events</h1>
-          <p class="lede">Thumb zone at the bottom of each card. Swipe right or tap RSVP. Pull up or tap Shifts. Long-press confirms so a pocket cannot sign you up.</p>
+          <p class="lede">Tap RSVP to hold a seat. Tap Roles to pick a volunteer shift. We’ll ask you to confirm.</p>
         </section>
         <p class="form-status" data-offline hidden>Offline. Your last RSVP is cached on this device until you reconnect.</p>
         <article class="next-event">
@@ -102,7 +101,7 @@
               <p data-card-status></p>
               <div class="shift-tools">
                 <button type="button" data-rsvp>RSVP</button>
-                <button type="button" data-shifts>Shifts</button>
+                <button type="button" data-shifts>Roles</button>
               </div>
             </div>
             <div class="shift-spectrum">
@@ -110,7 +109,7 @@
               <button class="shift-band" type="button" data-shift-id="oc-food" data-shift-label="4:30 food" data-fullness="filling">4:30 food <span class="seats">2 open</span></button>
               <button class="shift-band" type="button" data-shift-id="oc-close" data-shift-label="6:00 close" data-fullness="full">6:00 close <span class="seats">Full</span></button>
             </div>
-            <p class="shift-hint">Swipe right RSVP · pull up shifts · long-press confirms</p>
+            <p class="shift-hint">Tap RSVP or Roles. We’ll ask you to confirm.</p>
             <pre class="payload-view" hidden></pre>
           </article>
           <article class="shift-card" data-shift-card data-event-id="rice-clinic" data-title="RICE legal clinic">
@@ -120,7 +119,7 @@
               <p data-card-status></p>
               <div class="shift-tools">
                 <button type="button" data-rsvp>RSVP</button>
-                <button type="button" data-shifts>Shifts</button>
+                <button type="button" data-shifts>Roles</button>
               </div>
             </div>
             <div class="shift-spectrum">
@@ -136,10 +135,12 @@
     </div>
   </main>
   <div class="confirm-toast" data-confirm>
-    <p data-confirm-copy></p>
-    <div class="wizard-nav">
-      <button class="btn" type="button" data-confirm-yes>Confirm</button>
-      <button class="btn" type="button" data-confirm-no>Cancel</button>
+    <div class="confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+      <p id="confirm-title" data-confirm-copy></p>
+      <div class="wizard-nav">
+        <button class="btn" type="button" data-confirm-yes>Confirm</button>
+        <button class="btn" type="button" data-confirm-no>Cancel</button>
+      </div>
     </div>
   </div>
   </div>
