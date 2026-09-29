@@ -319,15 +319,15 @@ def build_scope():
     story.append(Paragraph("2. Audiences (priority order)", styles["H1"]))
     story.append(
         Paragraph(
-            "1. <b>New youth (Instagram → Home / Register).</b> One-handed, impatient, often on "
+            "1. <b>New youth (Instagram → Home / Register).</b> One-handed, often on "
             "cellular. Highest-priority actions: Register, RSVP, Mutual Aid (Contact).",
             styles["DocBullet"],
         )
     )
     story.append(
         Paragraph(
-            "2. <b>Existing member on a bus.</b> Already trusted. Needs the next event, a role, and a "
-            "confirm that will not fire in a pocket. Low spectacle, large targets, works in a tunnel.",
+            "2. <b>Existing member.</b> Already trusted. Needs the next event, a role, and a "
+            "confirm that will not fire in a pocket. Low spectacle, large targets, works efficiently.",
             styles["DocBullet"],
         )
     )
@@ -366,7 +366,7 @@ def build_scope():
     )
     story.append(
         Paragraph(
-            "• <b>Quiet Chamber</b> (dark login/portal chrome) and <b>Spectrum Consent</b> (channel bands) "
+            "• <b>Dark Pallette</b> (dark login/portal chrome) and <b>Spectrum Consent</b> (channel bands) "
             "ship with the must-haves; they are not extra decoration.",
             styles["DocBullet"],
         )
@@ -693,8 +693,34 @@ def build_scope():
     )
     story.append(Paragraph("• Color is never the only capacity signal on roles.", styles["DocBullet"]))
 
+    # Out of scope
+    story.append(Paragraph("6. Out of scope", styles["H1"]))
+    story.append(
+        Paragraph(
+            "The following are not included in this engagement and are not billed:",
+            styles["BodyLeft"],
+        )
+    )
+    story.append(Paragraph("• Live Instagram Graph API (this proposal uses a staff-curated shelf only)", styles["DocBullet"]))
+    story.append(Paragraph("• Admin CRM UI / EveryAction console clone", styles["DocBullet"]))
+    story.append(Paragraph("• Hover-only gestures", styles["DocBullet"]))
+    story.append(Paragraph("• Squarespace member areas", styles["DocBullet"]))
+    story.append(
+        Paragraph(
+            "• Production payment processing beyond the existing ActBlue donate link",
+            styles["DocBullet"],
+        )
+    )
+    story.append(Paragraph("• Bilingual Khmer / Lao / English UI", styles["DocBullet"]))
+    story.append(
+        Paragraph(
+            "• Production authentication, live CRM writes, and any deployed database",
+            styles["DocBullet"],
+        )
+    )
+
     # Acceptance
-    story.append(Paragraph("6. Acceptance", styles["H1"]))
+    story.append(Paragraph("7. Acceptance", styles["H1"]))
     story.append(
         Paragraph(
             "A reviewer can walk <b>proposal.html</b> at 390px width, one-handed, without a meeting. "
@@ -705,7 +731,7 @@ def build_scope():
     )
 
     # Commercial close
-    story.append(Paragraph("7. Commercial close", styles["H1"]))
+    story.append(Paragraph("8. Commercial close", styles["H1"]))
     story.append(
         Paragraph(
             "Labor is billed at <b>$150.00 per hour</b> across engineering, database construction "

@@ -139,6 +139,12 @@
       if (status) status.textContent = label(index);
     }
 
+    // Optional go-to for page-specific UI (e.g. story filmstrip); unused elsewhere.
+    root.goToSlide = function (nextIndex) {
+      if (typeof nextIndex !== "number" || nextIndex < 0 || nextIndex >= slides.length) return;
+      show(nextIndex);
+    };
+
     function next() {
       show((index + 1) % slides.length);
     }

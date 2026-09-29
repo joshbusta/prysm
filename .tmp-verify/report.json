@@ -1,0 +1,191 @@
+{
+  "mobile": {
+    "before": {
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "headerH": 123,
+      "titleH": 47,
+      "headerTop": 0,
+      "titleTop": 123,
+      "cssVars": {
+        "storyHeader": "123px",
+        "storyTitle": "47px",
+        "htmlSnap": "y mandatory",
+        "htmlPad": "170px",
+        "htmlBehavior": "auto"
+      },
+      "panels": [
+        {
+          "id": "beliefs",
+          "height": 674,
+          "top": 169,
+          "scrollSnapAlign": "start",
+          "scrollSnapStop": "always"
+        },
+        {
+          "id": "photos",
+          "height": 674,
+          "top": 843,
+          "scrollSnapAlign": "start",
+          "scrollSnapStop": "always"
+        },
+        {
+          "id": "vision",
+          "height": 1296,
+          "top": 1517,
+          "scrollSnapAlign": "start",
+          "scrollSnapStop": "always"
+        },
+        {
+          "id": "mission",
+          "height": 1032,
+          "top": 2813,
+          "scrollSnapAlign": "start",
+          "scrollSnapStop": "always"
+        }
+      ],
+      "beliefsDisplay": "grid",
+      "beliefsCols": "323.625px",
+      "visionDisplay": "flex",
+      "visionCols": "none",
+      "missionDisplay": "flex",
+      "missionCols": "none",
+      "photosDisplay": "flex",
+      "photosCols": "none",
+      "carouselViewportH": 588,
+      "filmstripDisplay": "none",
+      "wayfindingDisplay": "none",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "pageYOffset": 0,
+      "footerSnap": "start"
+    },
+    "navOpen": "block",
+    "statusBefore": "1 of 5",
+    "statusAfter": "2 of 5",
+    "reduced": {
+      "animationName": "none",
+      "opacity": "1",
+      "transform": "none",
+      "snap": "y mandatory"
+    },
+    "panelTops": [
+      {
+        "id": "beliefs",
+        "top": 169
+      },
+      {
+        "id": "photos",
+        "top": 843
+      },
+      {
+        "id": "vision",
+        "top": 1517
+      },
+      {
+        "id": "mission",
+        "top": 2813
+      }
+    ]
+  },
+  "desktop": {
+    "before": {
+      "viewport": {
+        "w": 1100,
+        "h": 800
+      },
+      "headerH": 80,
+      "titleH": 47,
+      "headerTop": 0,
+      "titleTop": 80,
+      "cssVars": {
+        "storyHeader": "80px",
+        "storyTitle": "47px",
+        "htmlSnap": "y mandatory",
+        "htmlPad": "127px",
+        "htmlBehavior": "auto"
+      },
+      "panels": [
+        {
+          "id": "beliefs",
+          "height": 673,
+          "top": 127,
+          "scrollSnapAlign": "start",
+          "scrollSnapStop": "always"
+        },
+        {
+          "id": "photos",
+          "height": 673,
+          "top": 800,
+          "scrollSnapAlign": "start",
+          "scrollSnapStop": "always"
+        },
+        {
+          "id": "vision",
+          "height": 673,
+          "top": 1473,
+          "scrollSnapAlign": "start",
+          "scrollSnapStop": "always"
+        },
+        {
+          "id": "mission",
+          "height": 673,
+          "top": 2146,
+          "scrollSnapAlign": "start",
+          "scrollSnapStop": "always"
+        }
+      ],
+      "beliefsDisplay": "grid",
+      "beliefsCols": "485.609px 485.609px",
+      "visionDisplay": "grid",
+      "visionCols": "500.406px 500.406px",
+      "missionDisplay": "grid",
+      "missionCols": "500.406px 500.406px",
+      "photosDisplay": "grid",
+      "photosCols": "677.875px 338.938px",
+      "carouselViewportH": 580,
+      "filmstripDisplay": "flex",
+      "wayfindingDisplay": "block",
+      "scrollWidth": 1100,
+      "clientWidth": 1100,
+      "pageYOffset": 0,
+      "footerSnap": "start"
+    },
+    "navOpen": null,
+    "statusBefore": "2 of 5",
+    "statusAfter": "3 of 5",
+    "reduced": {
+      "animationName": "none",
+      "opacity": "1",
+      "transform": "none",
+      "snap": "y mandatory"
+    },
+    "panelTops": [
+      {
+        "id": "beliefs",
+        "top": 127
+      },
+      {
+        "id": "photos",
+        "top": 800
+      },
+      {
+        "id": "vision",
+        "top": 1473
+      },
+      {
+        "id": "mission",
+        "top": 2146
+      }
+    ]
+  },
+  "other": {
+    "snap": "none",
+    "pad": "auto",
+    "bodyClass": "",
+    "cardPadding": null,
+    "cardBg": null
+  }
+}

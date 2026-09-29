@@ -1,0 +1,249 @@
+{
+  "mobile": {
+    "top": {
+      "hasTitleBar": false,
+      "h1InBeliefs": true,
+      "h1Text": "Our Story",
+      "h1FontSize": "28px",
+      "h1FontFamily": "Syne, sans-serif",
+      "h1FontWeight": "700",
+      "h1LetterSpacing": "-0.84px",
+      "h1Color": "rgb(44, 47, 74)",
+      "h1Position": "static",
+      "h1Top": 140,
+      "h1Left": 22,
+      "headerH": 123,
+      "headerSticky": "sticky",
+      "cssHeader": "123px",
+      "cssTitle": "",
+      "scrollPad": "123px",
+      "snap": "y mandatory",
+      "scrollbarWidth": 0,
+      "scrollbarWidthCss": "none",
+      "wayDisplay": "none",
+      "wayTop": 0,
+      "wayBottom": 0,
+      "marks": [
+        {
+          "top": 0,
+          "mid": 0
+        },
+        {
+          "top": 0,
+          "mid": 0
+        },
+        {
+          "top": 0,
+          "mid": 0
+        },
+        {
+          "top": 0,
+          "mid": 0
+        }
+      ],
+      "filmDisplay": "none",
+      "thumbs": [
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "label": "Group at a rally with signs for safety free from police",
+          "pressed": "true",
+          "current": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "label": "Staff group photo in Pawtucket",
+          "pressed": "false",
+          "current": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "label": "SEAFN Family Reunion 2018 group with banner",
+          "pressed": "false",
+          "current": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "label": "Freedom Schools gathering",
+          "pressed": "false",
+          "current": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "label": "15th anniversary group photo",
+          "pressed": "false",
+          "current": false
+        }
+      ],
+      "panelMinH": "721px",
+      "ariaLabelledby": "story-heading",
+      "beliefsFirstLineTop": 213
+    },
+    "afterScroll": {
+      "h1Top": -581,
+      "h1Bottom": -549,
+      "h1InView": false,
+      "headerStickyTop": 0,
+      "photosTop": 123,
+      "status": "1 of 5"
+    },
+    "filmstripClick": null,
+    "waySpacing": null
+  },
+  "desktop": {
+    "top": {
+      "hasTitleBar": false,
+      "h1InBeliefs": true,
+      "h1Text": "Our Story",
+      "h1FontSize": "32px",
+      "h1FontFamily": "Syne, sans-serif",
+      "h1FontWeight": "700",
+      "h1LetterSpacing": "-0.96px",
+      "h1Color": "rgb(44, 47, 74)",
+      "h1Position": "static",
+      "h1Top": 102,
+      "h1Left": 34,
+      "headerH": 80,
+      "headerSticky": "sticky",
+      "cssHeader": "80px",
+      "cssTitle": "",
+      "scrollPad": "80px",
+      "snap": "y mandatory",
+      "scrollbarWidth": 0,
+      "scrollbarWidthCss": "none",
+      "wayDisplay": "block",
+      "wayTop": 80,
+      "wayBottom": 800,
+      "marks": [
+        {
+          "top": 97,
+          "mid": 101
+        },
+        {
+          "top": 322,
+          "mid": 326
+        },
+        {
+          "top": 547,
+          "mid": 550
+        },
+        {
+          "top": 771,
+          "mid": 775
+        }
+      ],
+      "filmDisplay": "flex",
+      "thumbs": [
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "label": "Group at a rally with signs for safety free from police",
+          "pressed": "true",
+          "current": true
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "label": "Staff group photo in Pawtucket",
+          "pressed": "false",
+          "current": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "label": "SEAFN Family Reunion 2018 group with banner",
+          "pressed": "false",
+          "current": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "label": "Freedom Schools gathering",
+          "pressed": "false",
+          "current": false
+        },
+        {
+          "tag": "BUTTON",
+          "type": "button",
+          "label": "15th anniversary group photo",
+          "pressed": "false",
+          "current": false
+        }
+      ],
+      "panelMinH": "720px",
+      "ariaLabelledby": "story-heading",
+      "beliefsFirstLineTop": 246
+    },
+    "afterScroll": {
+      "h1Top": -618,
+      "h1Bottom": -581,
+      "h1InView": false,
+      "headerStickyTop": 0,
+      "photosTop": 80,
+      "status": "1 of 5"
+    },
+    "filmstripClick": {
+      "status": "3 of 5",
+      "activeAlt": "SEAFN Family Reunion 2018 group with banner",
+      "thumbs": [
+        {
+          "i": "0",
+          "current": false,
+          "pressed": "false"
+        },
+        {
+          "i": "1",
+          "current": false,
+          "pressed": "false"
+        },
+        {
+          "i": "2",
+          "current": true,
+          "pressed": "true"
+        },
+        {
+          "i": "3",
+          "current": false,
+          "pressed": "false"
+        },
+        {
+          "i": "4",
+          "current": false,
+          "pressed": "false"
+        }
+      ],
+      "status0": "1 of 5",
+      "afterNext": "4 of 5",
+      "afterPrev": "3 of 5"
+    },
+    "waySpacing": {
+      "mids": [
+        101,
+        326,
+        550,
+        775
+      ],
+      "gaps": [
+        225,
+        224,
+        225
+      ],
+      "avg": 225,
+      "maxDev": 1,
+      "viewportH": 800,
+      "headerH": 80,
+      "firstNearTop": 21,
+      "lastNearBottom": 25
+    }
+  },
+  "other": {
+    "snap": "none",
+    "scrollbarWidthCss": "auto",
+    "bodyClass": "",
+    "overflowY": "visible"
+  }
+}

@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/proposal.css">
 </head>
-<body>
+<body class="page-story">
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="grain" aria-hidden="true"></div>
   <div class="site-canvas">
@@ -70,84 +70,115 @@
   </header>
   <main id="main">
     <div class="wrap">
-      <!-- Beliefs -->
-      <section class="page-section" aria-labelledby="story-heading">
-        <h1 id="story-heading">Our Story</h1>
-        <ul class="beliefs">
-          <li>We believe in keeping our communities safe without policing, prisons, and borders.</li>
-          <li>We build community power through relationships, education, and collaboration.</li>
-          <li>We represent generations of strength and struggle, of refugee resilience and resistance.</li>
-          <li>We fight to keep our families together.</li>
-        </ul>
-        <div class="shard-carousel" role="region" aria-roledescription="carousel" aria-label="Our Story gallery" tabindex="0">
-          <div class="shard-carousel-viewport">
-            <figure class="media-shard is-active" data-crop="protest">
-              <img src="images/live/story-01.jpg" width="1920" height="1080" alt="Group at a rally with signs for safety free from police">
-            </figure>
-            <figure class="media-shard" data-crop="fists">
-              <img src="images/live/story-02.jpg" width="2500" height="1696" alt="Staff group photo in Pawtucket">
-            </figure>
-            <figure class="media-shard" data-crop="family">
-              <img src="images/live/story-03.jpg" width="2500" height="1875" alt="SEAFN Family Reunion 2018 group with banner">
-            </figure>
-            <figure class="media-shard" data-crop="family">
-              <img src="images/live/story-04.jpg" width="2500" height="1667" alt="Freedom Schools gathering">
-            </figure>
-            <figure class="media-shard" data-crop="family">
-              <img src="images/live/story-05.jpg" width="2500" height="1667" alt="15th anniversary group photo">
-            </figure>
-          </div>
-          <div class="shard-carousel-controls">
-            <button type="button" class="shard-carousel-prev" aria-label="Previous">‹</button>
-            <p class="shard-carousel-status" aria-live="polite">1 of 5</p>
-            <button type="button" class="shard-carousel-next" aria-label="Next">›</button>
+      <section class="story-panel story-panel--beliefs" id="beliefs" aria-labelledby="story-heading">
+        <h1 id="story-heading" class="story-page-title">Our Story</h1>
+        <div class="story-panel-body">
+          <div class="story-spine">
+            <ol class="beliefs">
+              <li><p>We believe in keeping our communities safe without policing, prisons, and borders.</p></li>
+              <li><p>We build community power through relationships, education, and collaboration.</p></li>
+              <li><p>We represent generations of strength and struggle, of refugee resilience and resistance.</p></li>
+              <li><p>We fight to keep our families together.</p></li>
+            </ol>
           </div>
         </div>
       </section>
 
-      <!-- Vision -->
-      <section class="page-section" aria-labelledby="vision-heading">
-        <h2 id="vision-heading">PrYSM vision</h2>
-        <p>Southeast Asian American history in Providence, RI is filled with both struggle and hope. As our communities continue to grow and develop, we have found resilience to be our greatest strength. However, we continue to face systemic oppression that keeps our communities disenfranchised. Providence Youth Student Movement envisions a strong, healthy Southeast Asian community free from state, street, and interpersonal violence.</p>
-        <blockquote>
-          <p>“In 2000, Sarath Suong and Kohei Ishihara, two Asian American students at Brown University, recruited local Black, Caribbean, and SEAA students at other colleges in Providence to start a local youth group, Providence Youth-Student Movement, or PrYSM.</p>
-          <p>Due to the diversity of their membership, PrYSM’s vision for the organization was to build a space for local Lesbian, Gay, Bisexual, Transgender, Questioning, and others (LGBTQ+), and those who identify as Southeast Asian American youth in a social justice movement to represent the intersections of their sexuality, poverty, immigration, and race and ethnicity.</p>
-          <p>Since there were virtually no similar groups in the city, PrYSM soon became a multi-racial space for other queer youth of color in working-class sections of Providence who did not have such spaces in their schools, colleges, or neighborhoods.”</p>
-          <p class="meta">— <cite>Generation Rising</cite></p>
-        </blockquote>
+      <section class="story-panel story-panel--photos" id="photos" aria-label="Our Story gallery">
+        <div class="story-panel-body story-photos-layout">
+          <div class="shard-carousel" role="region" aria-roledescription="carousel" aria-label="Our Story gallery" tabindex="0">
+            <div class="shard-carousel-viewport">
+              <figure class="media-shard is-active" data-crop="protest">
+                <img src="images/live/story-01.jpg" width="1920" height="1080" alt="Group at a rally with signs for safety free from police">
+              </figure>
+              <figure class="media-shard" data-crop="fists">
+                <img src="images/live/story-02.jpg" width="2500" height="1696" alt="Staff group photo in Pawtucket">
+              </figure>
+              <figure class="media-shard" data-crop="family">
+                <img src="images/live/story-03.jpg" width="2500" height="1875" alt="SEAFN Family Reunion 2018 group with banner">
+              </figure>
+              <figure class="media-shard" data-crop="family">
+                <img src="images/live/story-04.jpg" width="2500" height="1667" alt="Freedom Schools gathering">
+              </figure>
+              <figure class="media-shard" data-crop="family">
+                <img src="images/live/story-05.jpg" width="2500" height="1667" alt="15th anniversary group photo">
+              </figure>
+            </div>
+            <div class="shard-carousel-controls">
+              <button type="button" class="shard-carousel-prev" aria-label="Previous">‹</button>
+              <p class="shard-carousel-status" aria-live="polite">1 of 5</p>
+              <button type="button" class="shard-carousel-next" aria-label="Next">›</button>
+            </div>
+          </div>
+          <div class="story-filmstrip">
+            <button type="button" class="story-filmstrip-thumb is-current" data-story-thumb="0" aria-label="Group at a rally with signs for safety free from police" aria-pressed="true">
+              <img src="images/live/story-01.jpg" width="400" height="300" alt="" decoding="async">
+            </button>
+            <button type="button" class="story-filmstrip-thumb" data-story-thumb="1" aria-label="Staff group photo in Pawtucket" aria-pressed="false">
+              <img src="images/live/story-02.jpg" width="400" height="300" alt="" decoding="async">
+            </button>
+            <button type="button" class="story-filmstrip-thumb" data-story-thumb="2" aria-label="SEAFN Family Reunion 2018 group with banner" aria-pressed="false">
+              <img src="images/live/story-03.jpg" width="400" height="300" alt="" decoding="async">
+            </button>
+            <button type="button" class="story-filmstrip-thumb" data-story-thumb="3" aria-label="Freedom Schools gathering" aria-pressed="false">
+              <img src="images/live/story-04.jpg" width="400" height="300" alt="" decoding="async">
+            </button>
+            <button type="button" class="story-filmstrip-thumb" data-story-thumb="4" aria-label="15th anniversary group photo" aria-pressed="false">
+              <img src="images/live/story-05.jpg" width="400" height="300" alt="" decoding="async">
+            </button>
+          </div>
+        </div>
       </section>
 
-      <!-- Mission -->
-      <section class="page-section" aria-labelledby="mission-heading">
-        <h2 id="mission-heading">PrYSM mission</h2>
-        <p>PrYSM organizes at the intersections of race, class, gender, and sexual orientation by centering youth, female, queer, and people of color leadership in our campaigns, our organization, and our communities. PrYSM mobilizes queer Southeast Asian youth, families, and allies to build grassroots power and organize collectively for social justice.</p>
+      <section class="story-panel story-panel--vision" id="vision" aria-labelledby="vision-heading">
+        <div class="story-panel-body story-vision-layout">
+          <div class="story-spine">
+            <h2 id="vision-heading" class="chapter-kicker">Vision</h2>
+            <p class="chapter-claim">Providence Youth Student Movement envisions a strong, healthy Southeast Asian community free from state, street, and interpersonal violence.</p>
+            <p>Southeast Asian American history in Providence, RI is filled with both struggle and hope. As our communities continue to grow and develop, we have found resilience to be our greatest strength. However, we continue to face systemic oppression that keeps our communities disenfranchised.</p>
+          </div>
+          <blockquote class="chapter-inset" tabindex="0">
+            <p>“In 2000, Sarath Suong and Kohei Ishihara, two Asian American students at Brown University, recruited local Black, Caribbean, and SEAA students at other colleges in Providence to start a local youth group, Providence Youth-Student Movement, or PrYSM.</p>
+            <p>Due to the diversity of their membership, PrYSM’s vision for the organization was to build a space for local Lesbian, Gay, Bisexual, Transgender, Questioning, and others (LGBTQ+), and those who identify as Southeast Asian American youth in a social justice movement to represent the intersections of their sexuality, poverty, immigration, and race and ethnicity.</p>
+            <p>Since there were virtually no similar groups in the city, PrYSM soon became a multi-racial space for other queer youth of color in working-class sections of Providence who did not have such spaces in their schools, colleges, or neighborhoods.”</p>
+            <p class="meta">— <cite>Generation Rising</cite></p>
+          </blockquote>
+        </div>
       </section>
 
-      <!-- Values -->
-      <section class="page-section" aria-labelledby="values-heading">
-        <h2 id="values-heading">PrYSM values</h2>
-        <div class="values">
-          <article>
-            <h3>Peace</h3>
-            <p>We must confront and end cycles of violence in our communities. PrYSM must work towards transforming our communities by building safe spaces that foster accountability, healing, and dialogue.</p>
-          </article>
-          <article>
-            <h3>Love</h3>
-            <p>Social justice, community organizing, and institutional change must be rooted in compassion and unity. Love for ourselves, our families, and our communities must guide PrYSM’s work, actions, and collective vision.</p>
-          </article>
-          <article>
-            <h3>Power</h3>
-            <p>We must shift power into the hands of the people through direct action, base building, community coalitions, and youth organizing. PrYSM builds power by centering the experiences of the most oppressed and developing local grassroots leadership.</p>
-          </article>
+      <section class="story-panel story-panel--mission" id="mission" aria-labelledby="mission-heading">
+        <div class="story-panel-body story-mission-layout">
+          <div class="story-spine">
+            <h2 id="mission-heading" class="chapter-kicker">Mission</h2>
+            <p class="chapter-claim">PrYSM mobilizes queer Southeast Asian youth, families, and allies to build grassroots power and organize collectively for social justice.</p>
+            <p>PrYSM organizes at the intersections of race, class, gender, and sexual orientation by centering youth, female, queer, and people of color leadership in our campaigns, our organization, and our communities.</p>
+          </div>
+          <div class="story-values-col" tabindex="0">
+            <h2 id="values-heading">PrYSM values</h2>
+            <div class="values">
+              <article>
+                <h3>Peace</h3>
+                <p>We must confront and end cycles of violence in our communities. PrYSM must work towards transforming our communities by building safe spaces that foster accountability, healing, and dialogue.</p>
+              </article>
+              <article>
+                <h3>Love</h3>
+                <p>Social justice, community organizing, and institutional change must be rooted in compassion and unity. Love for ourselves, our families, and our communities must guide PrYSM’s work, actions, and collective vision.</p>
+              </article>
+              <article>
+                <h3>Power</h3>
+                <p>We must shift power into the hands of the people through direct action, base building, community coalitions, and youth organizing. PrYSM builds power by centering the experiences of the most oppressed and developing local grassroots leadership.</p>
+              </article>
+            </div>
+          </div>
         </div>
       </section>
     </div>
   </main>
-  <footer class="site-footer">
+  <footer class="site-footer" id="contact" aria-labelledby="contact-heading">
     <div class="wrap-wide footer-grid">
       <!-- Contact -->
       <div>
-        <h2>PrYSM Contact Info</h2>
+        <h2 id="contact-heading">PrYSM Contact Info</h2>
         <address>
           <p><strong>Mailing Address:</strong><br>PO Box 6487<br>Providence, RI 02940</p>
           <p><strong>Phone:</strong> <a href="tel:+14013837450">401-383-7450</a></p>
@@ -180,7 +211,17 @@
     </div>
     </footer>
   </div>
+  <nav class="story-wayfinding" aria-label="On this page">
+    <ol>
+      <li><a href="#beliefs" aria-current="true"><span class="story-wayfinding-mark" aria-hidden="true"></span><span class="story-wayfinding-label">Directives</span></a></li>
+      <li><a href="#photos"><span class="story-wayfinding-mark" aria-hidden="true"></span><span class="story-wayfinding-label">Photos</span></a></li>
+      <li><a href="#vision"><span class="story-wayfinding-mark" aria-hidden="true"></span><span class="story-wayfinding-label">Vision</span></a></li>
+      <li><a href="#mission"><span class="story-wayfinding-mark" aria-hidden="true"></span><span class="story-wayfinding-label">Mission</span></a></li>
+      <li><a href="#contact"><span class="story-wayfinding-mark" aria-hidden="true"></span><span class="story-wayfinding-label">Contact</span></a></li>
+    </ol>
+  </nav>
   <script src="js/site.js" defer></script>
   <script src="js/proposal.js" defer></script>
+  <script src="js/story.js" defer></script>
 </body>
 </html>
