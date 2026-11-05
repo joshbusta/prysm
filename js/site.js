@@ -98,117 +98,30 @@
 (function () {
   "use strict";
 
-  var carousels = Array.prototype.slice.call(document.querySelectorAll(".shard-carousel"));
-  if (!carousels.length) return;
+  // Section entrance: content is visible by default; only animates once JS opts in.
+  var items = Array.prototype.slice.call(document.querySelectorAll(".u-reveal"));
+  if (!items.length || !("IntersectionObserver" in window)) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  var intervalMs = 5000;
+  document.documentElement.classList.add("js-reveal");
 
-  function isIdle(root) {
-    return !root.matches(":hover") && !root.contains(document.activeElement);
-  }
-
-  carousels.forEach(function (root) {
-    var slides = Array.prototype.slice.call(root.querySelectorAll(".shard-carousel-viewport > .media-shard"));
-    if (slides.length < 2) return;
-
-    var prevBtn = root.querySelector(".shard-carousel-prev");
-    var nextBtn = root.querySelector(".shard-carousel-next");
-    var status = root.querySelector(".shard-carousel-status");
-    var index = 0;
-    var timer = null;
-
-    root.classList.add("is-enhanced");
-    if (!root.hasAttribute("tabindex")) root.setAttribute("tabindex", "0");
-
-    function label(i) {
-      return i + 1 + " of " + slides.length;
-    }
-
-    function show(nextIndex) {
-      slides.forEach(function (slide, i) {
-        var active = i === nextIndex;
-        slide.classList.toggle("is-active", active);
-        if (active) {
-          slide.removeAttribute("aria-hidden");
-        } else {
-          slide.setAttribute("aria-hidden", "true");
-        }
+  var observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        observer.unobserve(entry.target);
       });
-      index = nextIndex;
-      if (status) status.textContent = label(index);
+    },
+    { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+  );
+
+  items.forEach(function (item) {
+    // Anything already on screen at load shows immediately.
+    if (item.getBoundingClientRect().top < window.innerHeight) {
+      item.classList.add("is-in");
     }
-
-    // Optional go-to for page-specific UI (e.g. story filmstrip); unused elsewhere.
-    root.goToSlide = function (nextIndex) {
-      if (typeof nextIndex !== "number" || nextIndex < 0 || nextIndex >= slides.length) return;
-      show(nextIndex);
-    };
-
-    function next() {
-      show((index + 1) % slides.length);
-    }
-
-    function prev() {
-      show((index - 1 + slides.length) % slides.length);
-    }
-
-    function start() {
-      if (timer || reduceMotion.matches || !isIdle(root)) return;
-      timer = window.setInterval(next, intervalMs);
-    }
-
-    function stop() {
-      if (!timer) return;
-      window.clearInterval(timer);
-      timer = null;
-    }
-
-    function syncMotion() {
-      if (reduceMotion.matches) {
-        stop();
-        return;
-      }
-      start();
-    }
-
-    if (prevBtn) {
-      prevBtn.addEventListener("click", function () {
-        prev();
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener("click", function () {
-        next();
-      });
-    }
-
-    root.addEventListener("keydown", function (event) {
-      if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        prev();
-      } else if (event.key === "ArrowRight") {
-        event.preventDefault();
-        next();
-      }
-    });
-
-    root.addEventListener("mouseenter", stop);
-    root.addEventListener("mouseleave", start);
-    root.addEventListener("focusin", stop);
-    root.addEventListener("focusout", function (event) {
-      if (!root.contains(event.relatedTarget)) start();
-    });
-
-    show(0);
-    syncMotion();
-
-    if (typeof reduceMotion.addEventListener === "function") {
-      reduceMotion.addEventListener("change", syncMotion);
-    } else if (typeof reduceMotion.addListener === "function") {
-      reduceMotion.addListener(syncMotion);
-    }
+    observer.observe(item);
   });
 })();
 
