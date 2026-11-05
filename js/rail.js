@@ -17,9 +17,10 @@
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
   var ticking = false;
 
+  // Rails pin just beneath the sticky site header (height from js/site.js).
   function railTop() {
-    var v = parseFloat(getComputedStyle(document.body).getPropertyValue("--story-header"));
-    return document.body.classList.contains("page-story") && !isNaN(v) ? v : 0;
+    var v = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h"));
+    return isNaN(v) ? 0 : v;
   }
 
   function state(rail) {

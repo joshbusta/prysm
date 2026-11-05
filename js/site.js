@@ -341,3 +341,52 @@
     };
   }
 })();
+
+/* Site header: pinned on every page. Publishes its height as --header-h (anchor
+   offsets, Our Story panels, pinned rails) and frosts once content scrolls
+   beneath it. */
+(function () {
+  "use strict";
+
+  var header = document.querySelector(".site-header");
+  if (!header) return;
+  var root = document.documentElement;
+  var navToggle = header.querySelector(".nav-toggle");
+
+  function measure() {
+    // An open mobile menu makes the header temporarily tall; keep the last
+    // closed height so page layout doesn't jump.
+    if (navToggle && navToggle.checked) return;
+    var h = Math.round(header.getBoundingClientRect().height);
+    if (h > 0) root.style.setProperty("--header-h", h + "px");
+  }
+
+  measure();
+  window.addEventListener("resize", measure);
+  if (navToggle) {
+    navToggle.addEventListener("change", function () {
+      window.requestAnimationFrame(measure);
+    });
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+
+  var scrolled = null;
+  var ticking = false;
+  function syncScrolled() {
+    ticking = false;
+    var next = window.pageYOffset > 4;
+    if (next === scrolled) return;
+    scrolled = next;
+    header.classList.toggle("is-scrolled", next);
+  }
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(syncScrolled);
+    },
+    { passive: true }
+  );
+  syncScrolled();
+})();

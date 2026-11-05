@@ -226,9 +226,50 @@ dl {
 /* Header                                                                     */
 /* -------------------------------------------------------------------------- */
 
+/* Live header height (js/site.js measures it; these are fallbacks). Used for
+   anchor offsets, the Our Story panels and the pinned card rails. */
+:root {
+  --header-h: 123px;
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --header-h: 84px;
+  }
+}
+
+html {
+  scroll-padding-top: var(--header-h);
+}
+
+/* Pinned on every page: transparent at the top, light frosted glass once
+   content scrolls beneath it (.is-scrolled, toggled by js/site.js). */
 .site-header {
-  background: transparent;
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background-color: transparent;
   border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.site-header.is-scrolled {
+  background-color: rgba(245, 246, 250, 0.7);
+  border-bottom-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 24px rgba(30, 48, 120, 0.06);
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+}
+
+/* Open mobile menu: solid enough glass that the menu reads over any photo. */
+.site-header:has(.nav-toggle:checked) {
+  background-color: var(--glass-strong);
+  backdrop-filter: blur(24px) saturate(1.3);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3);
+}
+
+.site-header .nav-sublist {
+  z-index: 70;
 }
 
 .header-inner {
@@ -373,6 +414,16 @@ dl {
 .nav-toggle:checked ~ .site-nav,
 .nav-toggle:focus ~ .site-nav {
   display: block;
+}
+
+/* The header is pinned, so an open menu scrolls inside itself rather than
+   running off the bottom of the screen. */
+@media (max-width: 63.99rem) {
+  .site-nav {
+    max-height: calc(100svh - 8.5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
 }
 
 .nav-toggle:checked + .nav-toggle-label {
@@ -1352,10 +1403,7 @@ code {
 /* -------------------------------------------------------------------------- */
 
 html:has(body.page-story) {
-  /* Measured fallback; story.js overwrites with live header height. */
-  --story-header: 123px;
   scroll-behavior: auto;
-  scroll-padding-top: var(--story-header);
   scrollbar-width: none;
 }
 
@@ -1366,7 +1414,6 @@ html:has(body.page-story)::-webkit-scrollbar {
 }
 
 .page-story {
-  --story-header: 123px;
   scrollbar-width: none;
 }
 
@@ -1374,27 +1421,6 @@ html:has(body.page-story)::-webkit-scrollbar {
   display: none;
   width: 0;
   height: 0;
-}
-
-@media (min-width: 64rem) {
-  html:has(body.page-story),
-  .page-story {
-    --story-header: 80px;
-  }
-}
-
-.page-story .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 60;
-  background: var(--glass-strong);
-  background-image: linear-gradient(var(--glass-strong), var(--glass-strong));
-  backdrop-filter: blur(28px) saturate(1.2);
-  -webkit-backdrop-filter: blur(28px) saturate(1.2);
-}
-
-.page-story .site-header .nav-sublist {
-  z-index: 70;
 }
 
 .page-story .story-page-title {
@@ -1421,7 +1447,7 @@ html:has(body.page-story)::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: calc(100svh - var(--story-header));
+  min-height: calc(100svh - var(--header-h));
   margin: 0;
   padding: 1.1rem 0 1.35rem;
   box-sizing: border-box;
@@ -1443,7 +1469,7 @@ html:has(body.page-story)::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: calc(100svh - var(--story-header));
+  min-height: calc(100svh - var(--header-h));
   margin: 0;
   padding: 1.1rem 0 1.35rem;
   box-sizing: border-box;
@@ -1461,14 +1487,14 @@ html:has(body.page-story)::-webkit-scrollbar {
   --space-section: clamp(3.5rem, 8vw, 6.5rem);
   --space-block: clamp(1.5rem, 3vw, 2.25rem);
   --measure: 40rem;
-  --rail-top: 0px;
+  --rail-top: var(--header-h);
   /* Page washes (overridden per page below). RGB triplets. */
   --wash-1: 13, 110, 253;
   --wash-2: 30, 96, 255;
   --wash-3: 255, 94, 77;
 }
 
-body.page-story { --wash-1: 13, 110, 253; --wash-2: 30, 96, 255; --wash-3: 22, 58, 154; --rail-top: var(--story-header); }
+body.page-story { --wash-1: 13, 110, 253; --wash-2: 30, 96, 255; --wash-3: 22, 58, 154; }
 body.page-community { --wash-1: 255, 94, 77; --wash-2: 255, 122, 89; --wash-3: 255, 94, 77; }
 body.page-campaigns { --wash-1: 255, 94, 77; --wash-2: 255, 122, 89; --wash-3: 13, 110, 253; }
 body.page-rice { --wash-1: 30, 96, 255; --wash-2: 22, 58, 154; --wash-3: 30, 96, 255; }
