@@ -2838,12 +2838,91 @@ body.theme-kyr .u-photo {
 }
 
 /* PASS demands. */
-.page-pass .u-static-cards h2 {
-  font-size: var(--step-display-sm);
-  line-height: 1.15;
-  margin-bottom: 0.8rem;
+/* Hero: lede and coalition paragraph side by side under the title. */
+.u-pass-hero-body {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.u-pass-hero-body > p {
+  margin: 0;
+}
+
+.u-pass-hero-body > p:not(.u-display) {
+  max-width: var(--measure);
+  color: var(--ink);
+}
+
+@media (min-width: 56rem) {
+  .u-pass-hero-body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .page-pass .u-hero--type .u-display {
+    max-width: none;
+  }
+}
+
+/* Summary: lead paragraph, then the vision statement in its own panel. */
+.u-pass-lead {
+  max-width: 46rem;
+  margin: 0 0 var(--space-block);
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.u-pass-vision {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.u-pass-vision > p {
+  margin: 0;
+}
+
+.u-pass-vision > .u-display {
+  max-width: 26ch;
+}
+
+@media (min-width: 56rem) {
+  .u-pass-vision {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .u-pass-vision > p:not(.u-display) {
+    padding-left: 2rem;
+    border-left: 2px solid rgba(var(--wash-1), 0.45);
+  }
+}
+
+/* Demands: the "Over 90%" statement introduces the cards. */
+.u-pass-demands-lead {
+  max-width: 48rem;
+  margin: 0 0 var(--space-block);
+  font-family: var(--font-heading);
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  color: var(--ink);
 }
 
 .page-pass .u-static-cards {
   align-items: stretch;
+}
+
+.page-pass .u-static-cards .u-card {
+  padding: 1.5rem 1.6rem 1.4rem;
+}
+
+.page-pass .u-static-cards h2 {
+  margin-bottom: 0.75rem;
+  font-size: clamp(1.2rem, 1.7vw, 1.45rem);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
 }
