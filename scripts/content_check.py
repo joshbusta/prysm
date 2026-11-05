@@ -4,6 +4,7 @@
 Usage:
   python3 -I scripts/content_check.py --baseline   # write scripts/.content_baseline.json
   python3 -I scripts/content_check.py --compare    # diff current pages against baseline
+  Add --set tools to use the Tools pages (baseline: scripts/.content_baseline_tools.json).
 
 Captures, per page: normalized visible text, every img (src, alt), every a (href, text).
 Text inside elements with aria-hidden="true" or HTML comments is ignored.
@@ -15,8 +16,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-BASELINE = Path(__file__).resolve().parent / ".content_baseline.json"
-PAGES = [
+SETS = {
+    "us": [
     "our-story.html",
     "our-community.html",
     "our-networks.html",
@@ -24,7 +25,18 @@ PAGES = [
     "rice.html",
     "organizing-circle.html",
     "announcements.html",
-]
+    ],
+    "tools": [
+        "know-your-rights.html",
+        "know-your-rights-ice.html",
+        "pass-coalition-plan.html",
+        "lao-deportation-toolkit.html",
+    ],
+}
+SET = sys.argv[sys.argv.index("--set") + 1] if "--set" in sys.argv else "us"
+PAGES = SETS[SET]
+BASELINE = Path(__file__).resolve().parent / (
+    ".content_baseline.json" if SET == "us" else f".content_baseline_{SET}.json")
 VOID = {"img", "br", "hr", "input", "meta", "link", "source", "wbr"}
 
 
