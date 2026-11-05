@@ -195,3 +195,149 @@
     play();
   });
 })();
+
+/* Question accordion: animated open/close, one item open at a time.
+   Without JS the native <details name> grouping still works, just unanimated.
+   Height animates on .u-faq-body (clipped by CSS containment); the fade and
+   slide run on .u-faq-inner so they stay on the compositor. */
+(function () {
+  "use strict";
+
+  var groups = document.querySelectorAll(".u-faq");
+  if (!groups.length || !Element.prototype.animate) return;
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var EASE = "cubic-bezier(0.4, 0, 0.2, 1)";
+  var OPEN_MS = 280;
+  var CLOSE_MS = 220;
+  var SHIFT = "translateY(-0.35rem)";
+
+  Array.prototype.forEach.call(groups, function (group) {
+    var items = Array.prototype.slice.call(group.querySelectorAll(".u-faq-item")).filter(function (item) {
+      return item.querySelector("summary") && item.querySelector(".u-faq-body") && item.querySelector(".u-faq-inner");
+    });
+    if (!items.length) return;
+    group.classList.add("is-enhanced");
+
+    items.forEach(function (item) {
+      // JS owns exclusivity now; the native grouping would snap siblings shut.
+      item.removeAttribute("name");
+      item.querySelector("summary").addEventListener("click", function (event) {
+        event.preventDefault();
+        toggle(item, items);
+      });
+    });
+  });
+
+  function isClosing(item) {
+    return item.classList.contains("is-closing");
+  }
+
+  function parts(item) {
+    return { body: item.querySelector(".u-faq-body"), inner: item.querySelector(".u-faq-inner") };
+  }
+
+  // Current on-screen state, including any in-flight animation.
+  function snapshot(item) {
+    var p = parts(item);
+    return {
+      height: item.open ? p.body.getBoundingClientRect().height : 0,
+      opacity: item.open ? parseFloat(getComputedStyle(p.inner).opacity) : 0
+    };
+  }
+
+  function stop(item) {
+    var anims = item._faqAnims;
+    item._faqAnims = null;
+    if (!anims) return;
+    anims.forEach(function (anim) {
+      anim.onfinish = null;
+      anim.cancel();
+    });
+  }
+
+  function toggle(item, items) {
+    var opening = !item.open || isClosing(item);
+    var closing = opening
+      ? items.filter(function (other) {
+          return other !== item && other.open && !isClosing(other);
+        })
+      : [item];
+
+    if (reduceMotion.matches) {
+      closing.forEach(function (other) {
+        stop(other);
+        other.classList.remove("is-closing");
+        other.open = false;
+      });
+      if (opening) {
+        stop(item);
+        item.classList.remove("is-closing");
+        item.open = true;
+      }
+      return;
+    }
+
+    // 1. Read everything before writing anything (one layout pass, not one per item).
+    var closingFrom = closing.map(snapshot);
+    var openFrom = opening ? snapshot(item) : null;
+
+    // 2. Write: stop running animations and set the opening item's state.
+    closing.forEach(stop);
+    if (opening) {
+      stop(item);
+      item.classList.remove("is-closing");
+      item.open = true;
+    }
+
+    // 3. One read for the opening item's natural height, then start every animation.
+    var openTo = opening ? parts(item).body.scrollHeight : 0;
+    closing.forEach(function (other, i) {
+      collapse(other, closingFrom[i]);
+    });
+    if (opening) expand(item, openFrom, openTo);
+  }
+
+  function expand(item, from, to) {
+    var p = parts(item);
+    var timing = { duration: OPEN_MS, easing: EASE };
+    item._faqAnims = [
+      p.body.animate([{ height: from.height + "px" }, { height: to + "px" }], timing),
+      p.inner.animate(
+        [
+          { opacity: from.opacity, transform: from.opacity > 0 ? "none" : SHIFT },
+          { opacity: 1, transform: "none", offset: 0.6 },
+          { opacity: 1, transform: "none" }
+        ],
+        timing
+      )
+    ];
+    item._faqAnims[0].onfinish = function () {
+      stop(item);
+    };
+  }
+
+  function collapse(item, from) {
+    var p = parts(item);
+    item.classList.add("is-closing");
+    // fill: forwards holds the closed frame until `open` flips, so the
+    // answer never flashes back to full height for a frame.
+    var timing = { duration: CLOSE_MS, easing: EASE, fill: "forwards" };
+    item._faqAnims = [
+      p.body.animate([{ height: from.height + "px" }, { height: "0px" }], timing),
+      p.inner.animate(
+        [
+          { opacity: from.opacity, transform: "none" },
+          { opacity: 0, transform: SHIFT, offset: 0.5 },
+          { opacity: 0, transform: SHIFT }
+        ],
+        timing
+      )
+    ];
+    item._faqAnims[0].onfinish = function () {
+      item.open = false;
+      item.classList.remove("is-closing");
+      stop(item);
+    };
+  }
+})();
