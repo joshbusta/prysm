@@ -1311,7 +1311,14 @@ textarea {
 /* Footer                                                                     */
 /* -------------------------------------------------------------------------- */
 
+/* Fills the viewport under the sticky header with its content centered. */
 .site-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: calc(100svh - var(--header-h));
+  margin: 0;
   padding: 2.1rem 0 2.4rem;
   border-top: 1px solid rgba(255, 255, 255, 0.35);
   background: linear-gradient(180deg, rgba(245, 246, 250, 0.2), rgba(245, 246, 250, 0.55));
@@ -1423,17 +1430,6 @@ html:has(body.page-story)::-webkit-scrollbar {
   height: 0;
 }
 
-.page-story .story-page-title {
-  margin: 0 0 1rem;
-  font-family: var(--font-heading);
-  font-size: clamp(1.75rem, 3.5vw, 2rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  color: var(--ink);
-  flex: 0 0 auto;
-}
-
 .page-story main {
   padding-bottom: 0;
 }
@@ -1441,38 +1437,6 @@ html:has(body.page-story)::-webkit-scrollbar {
 .page-story main > .wrap {
   max-width: 72rem;
   padding-top: 0;
-}
-
-.page-story .story-panel {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: calc(100svh - var(--header-h));
-  margin: 0;
-  padding: 1.1rem 0 1.35rem;
-  box-sizing: border-box;
-}
-
-.page-story .story-panel--beliefs {
-  justify-content: flex-start;
-}
-
-.page-story .story-panel-body {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  min-height: 0;
-  width: 100%;
-}
-
-.page-story .site-footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: calc(100svh - var(--header-h));
-  margin: 0;
-  padding: 1.1rem 0 1.35rem;
-  box-sizing: border-box;
 }
 
 /* ========================================================================== */
@@ -1661,6 +1625,42 @@ body.page-rice::before {
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
     gap: 3rem;
   }
+}
+
+/* Masthead: the opening card of a page, directly inside <main> (outside
+   .u-page) so it runs nearly edge to edge. Title + one short blurb only; it
+   fills the first viewport under the header. Pair with .u-wash.u-wash--strong
+   for the page's colors. */
+.u-masthead {
+  --masthead-gap: clamp(0.6rem, 1.4vw, 1.1rem);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100svh - var(--header-h) - 2 * var(--masthead-gap));
+  margin: var(--masthead-gap);
+  text-align: center;
+}
+
+.u-masthead h1 {
+  max-width: 22ch;
+  margin: 0 0 0.75rem;
+}
+
+.u-masthead-blurb {
+  max-width: 36rem;
+  margin: 0 auto;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.u-masthead-blurb:empty {
+  display: none;
 }
 
 /* Photos -------------------------------------------------------------------- */
@@ -2054,10 +2054,6 @@ body.page-oc .u-rail--numbered .u-rail-card::before {
   .u-rail-track {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  .u-rail--wide .u-rail-track {
-    grid-template-columns: minmax(0, 1fr);
-  }
 }
 
 /* Pinned state (set by js/rail.js at >= 64rem with motion allowed). */
@@ -2082,11 +2078,6 @@ body.page-oc .u-rail--numbered .u-rail-card::before {
   width: var(--rail-card);
 }
 
-/* Networks: wide cards with the frame beside the essay so long copy fits. */
-.u-rail--wide {
-  --rail-card: min(52rem, 72vw);
-}
-
 .u-lockup {
   display: flex;
   align-items: center;
@@ -2106,34 +2097,14 @@ body.page-oc .u-rail--numbered .u-rail-card::before {
   max-height: 2.6rem;
 }
 
-.u-lockup h2 {
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
+.u-lockup :is(h2, h3) {
   margin: 0;
-}
-
-@media (min-width: 64rem) {
-  .u-rail--wide .u-rail-card {
-    display: grid;
-    grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
-    grid-template-rows: auto 1fr auto;
-    column-gap: 1.5rem;
-    row-gap: 0.8rem;
-    align-items: start;
-  }
-
-  .u-rail--wide .u-rail-card .u-frame {
-    grid-column: 1;
-    grid-row: 1 / span 3;
-  }
-
-  .u-rail--wide .u-rail-card > :not(.u-frame) {
-    grid-column: 2;
-  }
-
-  .u-rail--wide .u-rail-card p {
-    font-size: 0.98rem;
-    line-height: 1.6;
-  }
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 1.7vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-transform: none;
 }
 
 /* Logo strip ---------------------------------------------------------------- */
@@ -2241,47 +2212,255 @@ body.page-oc .u-rail--numbered .u-rail-card::before {
   }
 }
 
-/* Our Story overrides for the kit ------------------------------------------ */
+/* Us page rhythm ----------------------------------------------------------- */
+/* Calendly-style rhythm: big gaps between sections, each opened by a large
+   heading (optionally under a small kicker); supporting copy is quiet.
+   Announcements keeps the base kit spacing (dense, card-based news). */
 
-.page-story .story-panel.u-rail,
-.page-story .story-panel--mission {
-  display: block;
-  min-height: 0;
+body:is(.page-story, .page-community, .page-networks, .page-campaigns, .page-rice, .page-oc) {
+  --space-section: clamp(4.5rem, 10vw, 9rem);
+  --step-h2: clamp(1.75rem, 3vw, 2.6rem);
 }
 
-.page-story .story-panel--mission {
-  padding-top: var(--space-section);
+/* Breathing room between the opening card and a page's first text section
+   (rails supply their own top padding). */
+body:is(.page-community, .page-campaigns, .page-rice, .page-oc) .u-masthead + .u-page {
+  padding-top: clamp(3rem, 7vw, 6rem);
 }
 
-.page-story .story-panel--photos,
-.page-story .story-panel--vision {
-  min-height: 0;
+body:is(.page-community, .page-networks, .page-campaigns, .page-rice, .page-oc) :is(.u-split-text, .u-column, .u-measure) p {
+  color: var(--ink-soft);
+}
+
+body:is(.page-community, .page-campaigns) :is(.u-split-text, .u-column, .u-measure) > h2 {
+  margin-bottom: 1.1rem;
+  font-size: var(--step-h2);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+body:is(.page-community, .page-campaigns, .page-rice, .page-oc) .u-quote-band,
+body:is(.page-community, .page-campaigns, .page-rice, .page-oc) .u-after {
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.page-story .chapter-kicker {
+  margin: 0 0 0.9rem;
+  color: var(--cobalt-ink);
+}
+
+.page-story .story-panel {
+  margin: 0;
   padding: var(--space-section) 0 0;
 }
 
 .page-story .story-panel--beliefs {
-  padding-top: 1.85rem;
+  padding-top: 0;
 }
 
-.page-story .u-rail-head h1 {
-  position: relative;
-  display: inline-block;
-  font-size: clamp(2.4rem, 6vw, 4rem);
+.page-story .story-panel--mission {
+  padding-bottom: var(--space-section);
+}
+
+.u-section-head {
+  max-width: 48rem;
+  margin: 0 auto var(--space-block);
+  text-align: center;
+}
+
+.u-heading {
   margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--ink);
 }
 
-.page-story .u-rail-head h1::before {
-  content: "";
+/* Sentence-length headings step down a size. */
+.u-heading--sm,
+.story-panel--mission > .u-section-head .u-heading {
+  font-size: clamp(1.75rem, 3.1vw, 2.6rem);
+  line-height: 1.14;
+}
+
+.u-lead {
+  max-width: 40rem;
+  margin: 1.25rem auto 0;
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* Program intros (RICE, OC): a large lead sentence beside a photo. */
+.u-hero-copy > p.u-intro {
+  max-width: 34rem;
+  margin: 0;
+  font-size: clamp(1.25rem, 1.9vw, 1.55rem);
+  font-weight: 500;
+  line-height: 1.42;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.u-hero-copy > p.u-lead {
+  margin: 1.25rem 0 0;
+  color: var(--ink-soft);
+}
+
+/* Rails: in the pinned state the block fills the viewport under the header,
+   the head sits on top and the cards stretch to the remaining height. Uses
+   min-height so a rail whose cards cannot fit grows, and js/rail.js unpins it. */
+.u-rail.is-pinned .u-rail-sticky {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: calc(100vh - var(--rail-top) - 1px);
+  padding: clamp(1.75rem, 5vh, 3.5rem) 0 clamp(1.25rem, 3.5vh, 2.25rem);
+}
+
+.u-rail.is-pinned .u-rail-head {
+  flex: 0 0 auto;
+  margin-bottom: clamp(1.25rem, 4vh, 2.75rem);
+}
+
+/* Track rows: image (fills), then up to three text rows shared across cards
+   via subgrid, so images and copy line up from card to card. */
+.u-rail.is-pinned .u-rail-track {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--rail-card);
+  grid-template-rows: minmax(0, 1fr) repeat(3, auto);
+  column-gap: 1.25rem;
+  row-gap: 0;
+}
+
+.u-rail.is-pinned .u-rail-card {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+}
+
+.u-rail.is-pinned .u-rail-card > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.u-rail.is-pinned .u-rail-card > :not(.u-frame):not(.u-photo) {
+  margin-top: 1.1rem;
+}
+
+.u-rail.is-pinned .u-rail-card > :is(h2, h3, .u-lockup) + p {
+  margin-top: 0.6rem;
+}
+
+.u-rail.is-pinned .u-rail-card :is(.u-frame, .u-photo) {
+  grid-row: 1;
+  min-height: 0;
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+/* Photos fill their row instead of sizing it (a tall image would otherwise
+   push the block past the viewport and unpin the rail). */
+.u-rail.is-pinned .u-rail-card .u-photo img {
   position: absolute;
-  inset: -1.2rem -2.2rem;
-  z-index: -1;
-  border-radius: 999px;
-  background: radial-gradient(ellipse 70% 70% at 40% 50%, rgba(13, 110, 253, 0.32), transparent 72%);
-  filter: blur(8px);
+  inset: 0;
 }
 
 .page-story .u-values {
   margin-top: var(--space-section);
+}
+
+/* Cards: image inset close to the edge, copy below it with its own gutter. */
+.u-rail-card {
+  gap: 1.1rem;
+  padding: 0.7rem 0.7rem 1.4rem;
+}
+
+.u-rail-card :is(.u-frame, .u-photo) {
+  border-radius: calc(var(--radius-card) - 0.45rem);
+}
+
+.u-rail-card > :not(.u-frame):not(.u-photo) {
+  padding-left: 0.65rem;
+  padding-right: 0.65rem;
+}
+
+.u-rail-card > p:not(.u-rail-statement):not(.u-link) {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.u-rail-card > :is(h2, h3, .u-lockup) + p {
+  margin-top: -0.45rem;
+}
+
+.u-rail--numbered .u-rail-card::before {
+  content: none;
+}
+
+.u-rail-statement {
+  font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+.u-rail--numbered .u-rail-statement::before {
+  content: counter(u-rail, decimal-leading-zero) " — ";
+  color: var(--cobalt-ink);
+}
+
+.page-story .u-values .u-rail-name {
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
+}
+
+/* Gallery: one viewport tall on wider screens. */
+@media (min-width: 48rem) {
+  .page-story .story-panel--photos .u-bento {
+    height: calc(100svh - var(--header-h) - 2.5rem);
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: minmax(0, 1fr);
+  }
+}
+
+/* History: heading + lead beside the quote card. */
+.u-feature {
+  display: grid;
+  gap: var(--space-block);
+}
+
+.u-feature .u-lead {
+  margin-left: 0;
+}
+
+.u-feature .u-quote-band {
+  margin-top: 0;
+}
+
+.u-feature .u-quote-band .u-display,
+.u-feature .u-quote-band blockquote > p.u-display:first-child {
+  font-size: clamp(1.3rem, 1.8vw, 1.6rem);
+  line-height: 1.3;
+}
+
+.u-feature .u-quote-band blockquote p:not(.u-display):not(.meta) {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+@media (min-width: 64rem) {
+  .u-feature {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(3rem, 6vw, 6rem);
+    align-items: center;
+  }
 }
 
 /* Kit utilities ------------------------------------------------------------- */
@@ -2838,33 +3017,6 @@ body.theme-kyr .u-photo {
 }
 
 /* PASS demands. */
-/* Hero: lede and coalition paragraph side by side under the title. */
-.u-pass-hero-body {
-  display: grid;
-  gap: 1.25rem;
-}
-
-.u-pass-hero-body > p {
-  margin: 0;
-}
-
-.u-pass-hero-body > p:not(.u-display) {
-  max-width: var(--measure);
-  color: var(--ink);
-}
-
-@media (min-width: 56rem) {
-  .u-pass-hero-body {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-    gap: 3rem;
-    align-items: start;
-  }
-
-  .page-pass .u-hero--type .u-display {
-    max-width: none;
-  }
-}
-
 /* Summary: lead paragraph, then the vision statement in its own panel. */
 .u-pass-lead {
   max-width: 46rem;
