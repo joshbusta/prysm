@@ -229,7 +229,7 @@ dl {
 /* Live header height (js/site.js measures it; these are fallbacks). Used for
    anchor offsets, the Our Story panels and the pinned card rails. */
 :root {
-  --header-h: 123px;
+  --header-h: 67px;
 }
 
 @media (min-width: 64rem) {
@@ -303,15 +303,15 @@ html {
   max-width: 100%;
 }
 
-.nav-toggle-label {
-  order: 2;
-}
-
 .header-tools {
   display: flex;
   align-items: center;
   gap: 0.85rem;
   margin-left: auto;
+  order: 2;
+}
+
+.nav-toggle-label {
   order: 3;
 }
 
@@ -411,20 +411,19 @@ html {
   display: none;
 }
 
-.nav-toggle:checked ~ .site-nav,
-.nav-toggle:focus ~ .site-nav {
-  display: block;
+.nav-toggle:checked ~ .site-nav {
+  display: flex;
 }
 
-/* The header is pinned, so an open menu scrolls inside itself rather than
-   running off the bottom of the screen. */
-@media (max-width: 63.99rem) {
-  .site-nav {
-    max-height: calc(100svh - 8.5rem);
-    overflow-y: auto;
-    overscroll-behavior: contain;
-  }
+.nav-toggle:focus-visible + .nav-toggle-label {
+  outline: 2px solid var(--cobalt-deep);
+  outline-offset: 2px;
 }
+
+[hidden] {
+  display: none !important;
+}
+
 
 .nav-toggle:checked + .nav-toggle-label {
   background: var(--ink);
@@ -515,13 +514,123 @@ html {
   box-shadow: inset 0 -1px 0 var(--ink);
 }
 
+/* Small screens (Calendly-style): the closed header shows only the logo,
+   Donate and Menu. The open menu is a full-screen panel under the header with
+   the page groups as large rows, then Member login and Donate. The panel is
+   positioned against the sticky header, so it sits right below it. */
+@media (max-width: 63.99rem) {
+  .header-inner {
+    flex-wrap: nowrap;
+    gap: 0.6rem;
+  }
+
+  .brand-mark {
+    height: clamp(2.1rem, 9vw, 2.5rem);
+  }
+
+  .nav-toggle ~ .header-tools .header-login {
+    display: none;
+  }
+
+  .header-tools .btn,
+  .nav-toggle-label {
+    min-height: 2.5rem;
+    padding: 0.45rem 1rem;
+  }
+
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    height: calc(100svh - var(--header-h));
+    padding: 0.25rem 1.4rem 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--mist);
+    box-sizing: border-box;
+  }
+
+  html:has(.nav-toggle:checked) {
+    overflow: hidden;
+  }
+
+  .nav-list {
+    gap: 0;
+    padding: 0;
+  }
+
+  .nav-list > li {
+    border-bottom: 1px solid rgba(44, 47, 74, 0.1);
+  }
+
+  .nav-list > li > a,
+  .nav-sub > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 0.15rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+
+  .nav-sub > summary::after {
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-left: auto;
+    transition: transform 0.2s var(--ease);
+  }
+
+  .nav-sub[open] > summary::after {
+    transform: translateY(0.1em) rotate(-135deg);
+  }
+
+  .nav-sublist {
+    padding: 0 0 0.9rem 0.15rem;
+  }
+
+  .nav-sublist a {
+    padding: 0.6rem 0;
+    font-size: 1rem;
+  }
+
+  .nav-sublist a[aria-current="page"],
+  .nav-list > li > a[aria-current="page"] {
+    box-shadow: none;
+    color: var(--cobalt-ink);
+  }
+}
+
+/* Pinned to the bottom of the open menu so they stay visible even when an
+   expanded group makes the list scroll. */
+.nav-actions {
+  position: sticky;
+  bottom: 0;
+  display: grid;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding: 1.25rem 0 calc(1.25rem + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, rgba(245, 246, 250, 0), var(--mist) 1.25rem);
+}
+
+.nav-actions .btn {
+  width: 100%;
+  min-height: 3rem;
+}
+
 @media (min-width: 64rem) {
   .nav-toggle-label {
     display: none;
   }
 
-  .site-nav,
-  .nav-toggle:focus ~ .site-nav {
+  .nav-actions {
+    display: none;
+  }
+
+  .site-nav {
     display: block;
     flex-basis: auto;
     flex: 1 1 auto;
@@ -1347,6 +1456,64 @@ textarea {
 
 .site-footer h2 {
   font-size: 1.35rem;
+}
+
+.footer-social {
+  margin-bottom: 0.9rem;
+}
+
+.footer-donate {
+  margin: 0;
+}
+
+/* Phones: two clearly separated blocks, tighter rhythm, full-width actions,
+   and "(required)" on the same line as its label. */
+@media (max-width: 47.99rem) {
+  .site-footer {
+    padding: 3rem 0 2.5rem;
+  }
+
+  .footer-grid {
+    gap: 2.25rem;
+  }
+
+  .footer-grid > div + div {
+    padding-top: 2.25rem;
+    border-top: 1px solid rgba(44, 47, 74, 0.12);
+  }
+
+  .site-footer h2 {
+    margin-bottom: 0.9rem;
+    font-size: 1.25rem;
+  }
+
+  .site-footer address p {
+    margin-bottom: 0.6rem;
+  }
+
+  .site-footer address {
+    margin-bottom: 1.1rem;
+  }
+
+  .footer-donate .btn,
+  .site-footer form .btn {
+    width: 100%;
+  }
+
+  .site-footer form {
+    gap: 1.1rem;
+  }
+
+  .site-footer label {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0.45rem;
+  }
+
+  .site-footer label input {
+    flex: 1 0 100%;
+  }
 }
 
 .site-footer address {
