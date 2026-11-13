@@ -544,7 +544,9 @@ html {
     left: 0;
     right: 0;
     flex-direction: column;
-    height: calc(100svh - var(--header-h));
+    /* --nav-top: where the header ends on screen (set by js/site.js on open). */
+    height: calc(100svh - var(--nav-top, var(--header-h)) + 1px);
+    height: calc(100dvh - var(--nav-top, var(--header-h)) + 1px);
     padding: 0.25rem 1.4rem 0;
     overflow-y: auto;
     overscroll-behavior: contain;

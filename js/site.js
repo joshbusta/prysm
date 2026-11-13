@@ -361,10 +361,23 @@
     if (h > 0) root.style.setProperty("--header-h", h + "px");
   }
 
+  // The open mobile menu fills the screen below the header. Publish where the
+  // header actually ends on screen (--nav-top) so the panel's height is right
+  // even when something sits above the header (e.g. the proposal banner).
+  function measureNavTop() {
+    if (!navToggle || !navToggle.checked) return;
+    var bottom = Math.max(0, Math.round(header.getBoundingClientRect().bottom));
+    root.style.setProperty("--nav-top", bottom + "px");
+  }
+
   measure();
-  window.addEventListener("resize", measure);
+  window.addEventListener("resize", function () {
+    measure();
+    measureNavTop();
+  });
   if (navToggle) {
     navToggle.addEventListener("change", function () {
+      measureNavTop();
       window.requestAnimationFrame(measure);
     });
   }
